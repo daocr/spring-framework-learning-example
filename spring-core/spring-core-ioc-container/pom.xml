@@ -33,9 +33,9 @@
         </dependency>
 
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-version}</version>
+            <groupId>com.huilong</groupId>
+            <artifactId>spring-core-logging-logback</artifactId>
+            <version>${parent.version}</version>
         </dependency>
 
     </dependencies>

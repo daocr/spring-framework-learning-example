@@ -4,6 +4,7 @@
                xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback
                https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd">
 
+    <conversionRule conversionWord="customcolor" converterClass="com.huilong.color.LogbackColorful"/>
 
     <!--输出到控制台-->
 
@@ -13,10 +14,21 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" />
+    <appender name="colorConsole" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36}:%line - %customcolor(%msg) %n</pattern>
+        </encoder>
+
+    </appender>
+
+    <logger name="org.springframework"/>
+
+    <logger name="com.huilong" additivity="false">
+        <appender-ref ref="colorConsole"/>
+    </logger>
 
     <root level="trace">
-        <appender-ref ref="console"/>
+        <appender-ref ref="console" />
     </root>
 
     <!--<include file="/tmp/logback-demo.xml"/>-->

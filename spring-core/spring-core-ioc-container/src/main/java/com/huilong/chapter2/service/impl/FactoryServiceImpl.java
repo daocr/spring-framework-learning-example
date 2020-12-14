@@ -18,14 +18,7 @@ public class FactoryServiceImpl implements FactoryService {
     }
 
 
-    private String chapterName;
-
-    public String desc;
-
     public FactoryServiceImpl() {
     }
 
-    public FactoryServiceImpl(String chapterName) {
-        this.chapterName = chapterName;
-    }
 }
