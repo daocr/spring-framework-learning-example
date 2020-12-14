@@ -11,6 +11,8 @@
 
     <properties>
         <spring.framework.version>5.3.2</spring.framework.version>
+        <lombok.version>1.18.16</lombok.version>
+        <logback-version>1.2.3</logback-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -22,6 +24,17 @@
         <module>spring-web-reactive</module>
         <module>spring-testing</module>
     </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
