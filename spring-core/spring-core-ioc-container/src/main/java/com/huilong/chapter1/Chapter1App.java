@@ -1,7 +1,6 @@
 package com.huilong.chapter1;
 
-import com.huilong.chapter1.service.Chapter1Service;
-import org.springframework.context.ApplicationContext;
+import com.huilong.chapter1.service.HelloService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -14,11 +13,17 @@ public class Chapter1App {
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("chapter1/application.xml");
+        // 加载配置
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter1/application.xml");
 
-        Chapter1Service bean = applicationContext.getBean(Chapter1Service.class);
+        // 获取 对象
+        HelloService bean = classPathXmlApplicationContext.getBean(HelloService.class);
 
         bean.SayHello("张三");
+
+        // 关闭容器
+        classPathXmlApplicationContext.close();
+
     }
 
 }

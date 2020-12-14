@@ -3,9 +3,5 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--    引入其他 配置文件-->
-    <!--    <import resource="services.xml"/>-->
-
-    <bean id="helloService" class="com.huilong.chapter1.service.impl.HelloServiceImpl"/>
 
 </beans>
