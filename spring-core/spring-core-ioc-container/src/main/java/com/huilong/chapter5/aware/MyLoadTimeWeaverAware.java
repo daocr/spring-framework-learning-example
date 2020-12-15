@@ -15,6 +15,6 @@ public class MyLoadTimeWeaverAware implements LoadTimeWeaverAware {
 
     @Override
     public void setLoadTimeWeaver(LoadTimeWeaver loadTimeWeaver) {
-        log.info("LoadTimeWeaverAware 目前不知道是做什么的");
+        log.info("LoadTimeWeaverAware 目前不知道是做什么的 {}", loadTimeWeaver);
     }
 }

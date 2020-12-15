@@ -2,6 +2,7 @@ package com.huilong.chapter5;
 
 import com.huilong.chapter4.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -15,13 +16,15 @@ public class Chapter4App {
 
     public static void main(String[] args) {
 
-        // 加载配置
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter4/application$1.xml");
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
 
+        annotationConfigApplicationContext.scan("com.huilong.chapter5");
+
+        annotationConfigApplicationContext.refresh();
 
 
         // 关闭容器
-        classPathXmlApplicationContext.close();
+        annotationConfigApplicationContext.close();
 
     }
 

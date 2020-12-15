@@ -22,7 +22,7 @@ public class MyMessageSourceAware implements MessageSourceAware {
 
         this.messageSource=messageSource;
 
-        log.info(" MessageSource 处理国际化 ");
+        log.info(" MessageSource 处理国际化 {}" ,messageSource);
 
     }
 }

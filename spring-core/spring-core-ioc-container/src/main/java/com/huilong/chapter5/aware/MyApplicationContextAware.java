@@ -24,6 +24,6 @@ public class MyApplicationContextAware implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
 
-        log.info("获取 spring 上下文 {} 成功, 提供了 bean查询、事件管理、环境变量、国际化、资源文件管理 等功能 ", applicationContext);
+        log.info("获取 spring 上下文 成功, 提供了 bean查询、事件管理、环境变量、国际化、资源文件管理 等功能 {}  ", applicationContext);
     }
 }

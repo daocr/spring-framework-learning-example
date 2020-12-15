@@ -19,6 +19,6 @@ public class MyBeanFactoryAware implements BeanFactoryAware {
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 
-        log.info("获取 beanFactory {} 成功，提供 查询 spring bean 的功能 ", beanFactory);
+        log.info("获取 beanFactory  成功，提供 查询 spring bean 的功能 {}", beanFactory);
     }
 }

@@ -20,7 +20,7 @@ public class MyApplicationEventPublisherAware implements ApplicationEventPublish
     @Override
     public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         this.publisher = applicationEventPublisher;
-        log.info("提供事件管理上下文");
+        log.info("提供事件管理上下文成功 {}", applicationEventPublisher);
     }
 
 
