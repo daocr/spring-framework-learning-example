@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @date 2020/12/14
  */
 @Slf4j
-public class Chapter4App {
+public class Chapter5App {
 
     public static void main(String[] args) {
 
@@ -21,7 +21,6 @@ public class Chapter4App {
         annotationConfigApplicationContext.scan("com.huilong.chapter5");
 
         annotationConfigApplicationContext.refresh();
-
 
         // 关闭容器
         annotationConfigApplicationContext.close();
