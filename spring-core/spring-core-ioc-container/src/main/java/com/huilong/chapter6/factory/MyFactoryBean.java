@@ -20,7 +20,7 @@ public class MyFactoryBean implements FactoryBean<HelloService> {
 
         HelloServiceImpl helloService = new HelloServiceImpl();
 
-        log.info("实例化 HelloServiceImpl 完成 {}", helloService);
+        log.info("实例化 HelloService7Impl 完成 {}", helloService);
 
         return helloService;
     }

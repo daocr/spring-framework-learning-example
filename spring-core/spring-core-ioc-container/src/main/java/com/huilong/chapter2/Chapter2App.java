@@ -1,6 +1,6 @@
 package com.huilong.chapter2;
 
-import com.huilong.chapter2.service.HelloService;
+import com.huilong.chapter2.service.HelloService2;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -17,7 +17,7 @@ public class Chapter2App {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter2/application.xml");
 
         // 获取 对象
-        HelloService bean = classPathXmlApplicationContext.getBean("helloService3", HelloService.class);
+        HelloService2 bean = classPathXmlApplicationContext.getBean("helloService3", HelloService2.class);
 
         bean.SayHello("张三");
 

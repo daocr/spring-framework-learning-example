@@ -2,6 +2,8 @@
 
 
 
+[TOC]
+
 
 
 ## 简介
@@ -54,7 +56,7 @@ public class Chapter1App {
     <!--    引入其他 配置文件-->
     <!--    <import resource="services.xml"/>-->
 
-    <bean id="chapter1Service" class="com.huilong.chapter1.service.impl.HelloServiceImpl"/>
+    <bean id="chapter1Service" class="com.huilong.chapter1.service.impl.HelloService1Impl"/>
 
 </beans>
 
@@ -91,7 +93,7 @@ public class Chapter2App {
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--    无参函数实例化-->
-    <bean id="helloService" class="com.huilong.chapter2.service.impl.HelloServiceImpl"/>
+    <bean id="helloService" class="com.huilong.chapter2.service.impl.HelloService2Impl"/>
     <bean id="factoryClientService" class="com.huilong.chapter2.service.impl.FactoryServiceImpl"/>
 
 
@@ -106,7 +108,7 @@ public class Chapter2App {
 </beans>
 ```
 
-### 依赖注入
+### 3、依赖注入
 
 ```java
 public class Chapter3App {
@@ -205,8 +207,88 @@ public class Chapter3App {
 </beans>
 ```
 
-### bean 的生命周期
+### 4、bean 的生命周期
 
-## 参数
 
+
+### 5、aware 接口
+
+
+
+| Name                             | Injected Dependency                                          | Explained in…                                                |
+| :------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| `ApplicationContextAware`        | Declaring `ApplicationContext`.                              | [`ApplicationContextAware` and `BeanNameAware`](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-aware) |
+| `ApplicationEventPublisherAware` | Event publisher of the enclosing `ApplicationContext`.       | [Additional Capabilities of the `ApplicationContext`](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-introduction) |
+| `BeanClassLoaderAware`           | Class loader used to load the bean classes.                  | [Instantiating Beans](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-class) |
+| `BeanFactoryAware`               | Declaring `BeanFactory`.                                     | [`ApplicationContextAware` and `BeanNameAware`](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-aware) |
+| `BeanNameAware`                  | Name of the declaring bean.                                  | [`ApplicationContextAware` and `BeanNameAware`](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-aware) |
+| `LoadTimeWeaverAware`            | Defined weaver for processing class definition at load time. | [Load-time Weaving with AspectJ in the Spring Framework](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop-aj-ltw) |
+| `MessageSourceAware`             | Configured strategy for resolving messages (with support for parametrization and internationalization). | [Additional Capabilities of the `ApplicationContext`](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-introduction) |
+| `NotificationPublisherAware`     | Spring JMX notification publisher.                           | [Notifications](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#jmx-notifications) |
+| `ResourceLoaderAware`            | Configured loader for low-level access to resources.         | [Resources](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) |
+| `ServletConfigAware`             | Current `ServletConfig` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc) |
+| `ServletContextAware`            | Current `ServletContext` the container runs in. Valid only in a web-aware Spring `ApplicationContext`. | [Spring MVC](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc) |
+
+
+
+`BeanFactory` 与 `ApplicationContext` 不同点
+
+
+
+| Feature                                                 | `BeanFactory` | `ApplicationContext` |
+| :------------------------------------------------------ | :------------ | :------------------- |
+| Bean instantiation/wiring                               | Yes           | Yes                  |
+| Integrated lifecycle management                         | No            | Yes                  |
+| Automatic `BeanPostProcessor` registration              | No            | Yes                  |
+| Automatic `BeanFactoryPostProcessor` registration       | No            | Yes                  |
+| Convenient `MessageSource` access (for internalization) | No            | Yes                  |
+| Built-in `ApplicationEvent` publication mechanism       | No            | Yes                  |
+
+
+### 6、扩展点 processor
+
+
+
+### 7、基于注解配置spring 容器
+
+
+
+
+
+#### 7.1 xml 配置与 注解配置对应关系表
+
+
+
+| XML                        | Annotation      |                                                              |
+| -------------------------- | --------------- | ------------------------------------------------------------ |
+|                            | @Autowired      |                                                              |
+|                            | @Required       |                                                              |
+| <bean/>                    | @Bean           |                                                              |
+| <beans/>                   | @Configuration  |                                                              |
+| <qualifier/>               | @Qualifier      | 简单条件预选                                                 |
+| <<qualifier/>              | @Genre          | 复杂条件预选，需要配合 `<meta/>`标签                         |
+|                            | @Resource       |                                                              |
+|                            | @Value          | 从配置文件中获取值，可以使用sp el 表达式                     |
+| <util:properties />        | @PropertySource | 加载配置 properties 配置文件                                 |
+| <bean/>                    | @Component      | 声明bean，如果需要自定义生成bean name 请实现 `BeanNameGenerator` 接口 |
+| <bean/>                    | @Service        |                                                              |
+| <bean/>                    | @Repository     |                                                              |
+| <bean init-method=""/>     | @PostConstruct  |                                                              |
+| <bean destroy-method=""/>  | @PreDestroy     |                                                              |
+| <context:component-scan /> | @ComponentScan  | 扫描指定目录注解配置                                         |
+|                            |                 |                                                              |
+
+
+
+#### 7.2 、context:component-scan 扫描过滤类型介绍
+
+
+
+| Filter Type          | Example Expression           | Description                                                  |
+| :------------------- | :--------------------------- | :----------------------------------------------------------- |
+| annotation (default) | `org.example.SomeAnnotation` | An annotation to be *present* or *meta-present* at the type level in target components. |
+| assignable           | `org.example.SomeClass`      | A class (or interface) that the target components are assignable to (extend or implement). |
+| aspectj              | `org.example..*Service+`     | An AspectJ type expression to be matched by the target components. |
+| regex                | `org\.example\.Default.*`    | A regex expression to be matched by the target components' class names. |
+| custom               | `org.example.MyTypeFilter`   | A custom implementation of the `org.springframework.core.type.TypeFilter` interface. |
 

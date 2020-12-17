@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--    无参函数实例化-->
-    <bean id="helloService" class="com.huilong.chapter2.service.impl.HelloServiceImpl"/>
+    <bean id="helloService" class="com.huilong.chapter2.service.impl.HelloService2Impl"/>
     <bean id="factoryClientService" class="com.huilong.chapter2.service.impl.FactoryServiceImpl"/>
 
 

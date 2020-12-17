@@ -6,6 +6,6 @@
     <!--    引入其他 配置文件-->
     <!--    <import resource="services.xml"/>-->
 
-    <bean id="helloService" class="com.huilong.chapter1.service.impl.HelloServiceImpl"/>
+    <bean id="helloService" class="com.huilong.chapter1.service.impl.HelloService1Impl"/>
 
 </beans>

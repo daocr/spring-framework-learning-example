@@ -1,6 +1,6 @@
 package com.huilong.chapter4;
 
-import com.huilong.chapter4.service.HelloService;
+import com.huilong.chapter4.service.HelloService4;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,10 +16,10 @@ public class Chapter5App {
     public static void main(String[] args) {
 
         // 加载配置
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter4/application$1.xml");
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter4/application.xml");
 
         // 获取 对象
-        HelloService helloService = classPathXmlApplicationContext.getBean(HelloService.class);
+        HelloService4 helloService = classPathXmlApplicationContext.getBean(HelloService4.class);
         helloService.SayHello("张三");
 
 

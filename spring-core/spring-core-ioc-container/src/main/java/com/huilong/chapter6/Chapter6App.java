@@ -15,6 +15,7 @@ public class Chapter6App {
 
     public static void main(String[] args) {
 
+
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
 
         annotationConfigApplicationContext.scan("com.huilong.chapter6");

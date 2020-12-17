@@ -1,6 +1,6 @@
 package com.huilong.chapter2.service.impl;
 
-import com.huilong.chapter2.service.HelloService;
+import com.huilong.chapter2.service.HelloService2;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020/12/14
  */
 @Slf4j
-public class HelloServiceImpl implements HelloService {
+public class HelloService2Impl implements HelloService2 {
 
 
 

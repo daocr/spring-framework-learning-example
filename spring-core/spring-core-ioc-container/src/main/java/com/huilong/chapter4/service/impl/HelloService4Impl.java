@@ -1,16 +1,18 @@
 package com.huilong.chapter4.service.impl;
 
-import com.huilong.chapter4.service.HelloService;
+import com.huilong.chapter4.service.HelloService4;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
+ * 实现 bean初始化接口 、bean销毁接口
+ *
  * @author daocr
  * @date 2020/12/14
  */
 @Slf4j
-public class HelloServiceImpl implements HelloService, InitializingBean, DisposableBean {
+public class HelloService4Impl implements HelloService4, InitializingBean, DisposableBean {
 
 
     @Override
@@ -27,7 +29,7 @@ public class HelloServiceImpl implements HelloService, InitializingBean, Disposa
      */
     @Override
     public void destroy() throws Exception {
-        log.info(" HelloService  InitializingBean 初始化");
+        log.info(" HelloService7  InitializingBean 初始化");
     }
 
     /**
@@ -39,6 +41,6 @@ public class HelloServiceImpl implements HelloService, InitializingBean, Disposa
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info(" HelloService  DisposableBean 销毁");
+        log.info(" HelloService7  DisposableBean 销毁");
     }
 }

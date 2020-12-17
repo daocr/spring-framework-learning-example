@@ -1,9 +1,9 @@
-package com.huilong.chapter4.service;
+package com.huilong.chapter1.service;
 
 /**
  * @author daocr
  * @date 2020/12/14
  */
-public interface HelloService {
+public interface HelloService1 {
     void SayHello(String name);
 }
