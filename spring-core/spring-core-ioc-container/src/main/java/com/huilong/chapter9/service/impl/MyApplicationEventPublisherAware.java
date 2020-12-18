@@ -1,6 +1,8 @@
-package com.huilong.chapter5.aware;
+package com.huilong.chapter9.service.impl;
 
+import com.huilong.chapter9.event.CustomEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
@@ -24,5 +26,13 @@ public class MyApplicationEventPublisherAware implements ApplicationEventPublish
 
     }
 
+    /**
+     * 触发事件
+     *
+     * @param customEvent
+     */
+    public void trigger(CustomEvent customEvent) {
+        publisher.publishEvent(customEvent);
+    }
 
 }
