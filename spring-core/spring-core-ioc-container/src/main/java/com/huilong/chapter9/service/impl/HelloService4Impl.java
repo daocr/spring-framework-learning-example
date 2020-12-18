@@ -4,6 +4,7 @@ import com.huilong.chapter9.service.HelloService4;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 /**

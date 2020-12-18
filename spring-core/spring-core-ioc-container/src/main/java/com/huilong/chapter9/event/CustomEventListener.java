@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 public class CustomEventListener implements ApplicationListener<CustomEvent> {
     @Override
     public void onApplicationEvent(CustomEvent event) {
-
         log.info("触发自定义事件 事件名称 ：{} 触发来源：{} ", event.getEventName(), event.getSource());
-
     }
 }
