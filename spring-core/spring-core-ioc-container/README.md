@@ -263,22 +263,22 @@ public class Chapter3App {
 | ------------------------------------------------------------ | --------------- | ------------------------------------------------------------ |
 |                                                              | @Autowired      |                                                              |
 |                                                              | @Required       |                                                              |
-| <bean/>                                                      | @Bean           |                                                              |
-| <beans/>                                                     | @Configuration  |                                                              |
-| <qualifier/>                                                 | @Qualifier      | 简单条件预选                                                 |
-| <<qualifier/>                                                | @Genre          | 复杂条件预选，需要配合 `<meta/>`标签                         |
+| `<bean/>`                                                    | @Bean           |                                                              |
+| `<beans/>`                                                   | @Configuration  |                                                              |
+| `<qualifier/>`                                               | @Qualifier      | 简单条件预选                                                 |
+| `<qualifier/>`                                               | @Genre          | 复杂条件预选，需要配合 `<meta/>`标签                         |
 |                                                              | @Resource       | 优先通过属性名称，进行注入                                   |
 |                                                              | @Value          | 从配置文件中获取值，可以使用sp el 表达式                     |
-| <util:properties location="classpath*:"/>  <br/> <context:property-placeholder location="classpath*:"/> | @PropertySource | 加载配置 properties 配置文件                                 |
-| <bean id="" />                                               | @Component      | 声明bean，如果需要自定义生成bean name 请实现 `BeanNameGenerator` 接口 |
-| <bean id="" />                                               | @Service        |                                                              |
-| <bean id=""/>                                                | @Repository     |                                                              |
-| <bean init-method=""/>                                       | @PostConstruct  |                                                              |
-| <bean destroy-method=""/>                                    | @PreDestroy     |                                                              |
+| `<util:properties location="classpath*:"/>` <br/> `<context:property-placeholder location="classpath*:"/>` | @PropertySource | 加载配置 properties 配置文件                                 |
+| `<bean id="" />`                                             | @Component      | 声明bean，如果需要自定义生成bean name 请实现 `BeanNameGenerator` 接口 |
+| `<bean id="" />`                                             | @Service        |                                                              |
+| `<bean id="" />`                                             | @Repository     |                                                              |
+| `<bean init-method=""/>`                                     | @PostConstruct  |                                                              |
+| `<bean destroy-method=""/>`                                  | @PreDestroy     |                                                              |
 | <context:component-scan base-package=""/>                    | @ComponentScan  | 扫描指定目录注解配置                                         |
 |                                                              | `@Import`       | 引入其他配置注解配置类                                       |
-| <import resource="classpath*:" />                            | @ImportResource | 引入其他xml 配置类                                           |
-|                                                              | `@Profile`      | 环境变量区分 ，激活环境配置 ctx.getEnvironment().setActiveProfiles("development");<br/> -Dspring.profiles.active="profile1,profile2" |
+| `<import resource="classpath*:" />`                          | @ImportResource | 引入其他xml 配置类                                           |
+|                                                              | `@Profile`      | 1、环境变量区分 ，激活环境配置  <br/> 2、ctx.getEnvironment().setActiveProfiles("development");<br/> 3、-Dspring.profiles.active="profile1,profile2" |
 |                                                              |                 |                                                              |
 |                                                              |                 |                                                              |
 |                                                              |                 |                                                              |
@@ -321,3 +321,5 @@ public class Chapter3App {
 | ObjectFactory       | Provider              | `javax.inject.Provider` is a direct alternative to Spring’s `ObjectFactory`, only with a shorter `get()` method name. It can also be used in combination with Spring’s `@Autowired` or with non-annotated constructors and setter methods. |
 
 
+
+### 8、

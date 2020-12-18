@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.List;
 
 /**
- * 依赖注入
+ * 注解形式 配置 spring
  *
  * @author daocr
  * @date 2020/12/14
