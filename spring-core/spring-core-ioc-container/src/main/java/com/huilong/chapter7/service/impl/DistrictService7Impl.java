@@ -22,8 +22,6 @@ import java.util.stream.Collectors;
  * @author daocr
  * @date 2020/12/16
  */
-
-@Primary
 @Service
 //@Named  //JSR 330 标准
 @Slf4j

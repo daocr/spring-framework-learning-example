@@ -30,12 +30,11 @@ public class CityService7Impl implements CityService7 {
     public void init() {
 
 
-
         cache = new ArrayList<>();
 
         cache.add(new CityDto(1, "上海"));
 
-        log.info("初始化城市数据完成 {}" ,cache);
+        log.info("初始化城市数据完成 {}", cache);
     }
 
 
@@ -46,7 +45,7 @@ public class CityService7Impl implements CityService7 {
     public void destroy() {
         cache = null;
 
-        log.info("销毁城市数据完成 ！" );
+        log.info("销毁城市数据完成 ！");
     }
 
 

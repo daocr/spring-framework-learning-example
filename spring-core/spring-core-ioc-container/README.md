@@ -259,28 +259,39 @@ public class Chapter3App {
 
 
 
-| XML                        | Annotation      |                                                              |
-| -------------------------- | --------------- | ------------------------------------------------------------ |
-|                            | @Autowired      |                                                              |
-|                            | @Required       |                                                              |
-| <bean/>                    | @Bean           |                                                              |
-| <beans/>                   | @Configuration  |                                                              |
-| <qualifier/>               | @Qualifier      | 简单条件预选                                                 |
-| <<qualifier/>              | @Genre          | 复杂条件预选，需要配合 `<meta/>`标签                         |
-|                            | @Resource       |                                                              |
-|                            | @Value          | 从配置文件中获取值，可以使用sp el 表达式                     |
-| <util:properties />        | @PropertySource | 加载配置 properties 配置文件                                 |
-| <bean/>                    | @Component      | 声明bean，如果需要自定义生成bean name 请实现 `BeanNameGenerator` 接口 |
-| <bean/>                    | @Service        |                                                              |
-| <bean/>                    | @Repository     |                                                              |
-| <bean init-method=""/>     | @PostConstruct  |                                                              |
-| <bean destroy-method=""/>  | @PreDestroy     |                                                              |
-| <context:component-scan /> | @ComponentScan  | 扫描指定目录注解配置                                         |
-|                            |                 |                                                              |
+| XML                                                          | Annotation      |                                                              |
+| ------------------------------------------------------------ | --------------- | ------------------------------------------------------------ |
+|                                                              | @Autowired      |                                                              |
+|                                                              | @Required       |                                                              |
+| <bean/>                                                      | @Bean           |                                                              |
+| <beans/>                                                     | @Configuration  |                                                              |
+| <qualifier/>                                                 | @Qualifier      | 简单条件预选                                                 |
+| <<qualifier/>                                                | @Genre          | 复杂条件预选，需要配合 `<meta/>`标签                         |
+|                                                              | @Resource       | 优先通过属性名称，进行注入                                   |
+|                                                              | @Value          | 从配置文件中获取值，可以使用sp el 表达式                     |
+| <util:properties location="classpath*:"/>  <br/> <context:property-placeholder location="classpath*:"/> | @PropertySource | 加载配置 properties 配置文件                                 |
+| <bean id="" />                                               | @Component      | 声明bean，如果需要自定义生成bean name 请实现 `BeanNameGenerator` 接口 |
+| <bean id="" />                                               | @Service        |                                                              |
+| <bean id=""/>                                                | @Repository     |                                                              |
+| <bean init-method=""/>                                       | @PostConstruct  |                                                              |
+| <bean destroy-method=""/>                                    | @PreDestroy     |                                                              |
+| <context:component-scan base-package=""/>                    | @ComponentScan  | 扫描指定目录注解配置                                         |
+|                                                              | `@Import`       | 引入其他配置注解配置类                                       |
+| <import resource="classpath*:" />                            | @ImportResource | 引入其他xml 配置类                                           |
+|                                                              | `@Profile`      | 环境变量区分 ，激活环境配置 ctx.getEnvironment().setActiveProfiles("development");<br/> -Dspring.profiles.active="profile1,profile2" |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
+|                                                              |                 |                                                              |
 
 
 
-#### 7.2 、context:component-scan 扫描过滤类型介绍
+#### 7.2 context:component-scan 扫描过滤类型介绍
 
 
 
@@ -291,4 +302,22 @@ public class Chapter3App {
 | aspectj              | `org.example..*Service+`     | An AspectJ type expression to be matched by the target components. |
 | regex                | `org\.example\.Default.*`    | A regex expression to be matched by the target components' class names. |
 | custom               | `org.example.MyTypeFilter`   | A custom implementation of the `org.springframework.core.type.TypeFilter` interface. |
+
+
+
+#### 7.3 jsr-30 与spring 注解 对应关系表
+
+
+
+| Spring              | javax.inject.*        | javax.inject restrictions / comments                         |
+| :------------------ | :-------------------- | :----------------------------------------------------------- |
+| @Autowired          | @Inject               | `@Inject` has no 'required' attribute. Can be used with Java 8’s `Optional` instead. |
+| @Component          | @Named / @ManagedBean | JSR-330 does not provide a composable model, only a way to identify named components. |
+| @Scope("singleton") | @Singleton            | The JSR-330 default scope is like Spring’s `prototype`. However, in order to keep it consistent with Spring’s general defaults, a JSR-330 bean declared in the Spring container is a `singleton` by default. In order to use a scope other than `singleton`, you should use Spring’s `@Scope` annotation. `javax.inject` also provides a [@Scope](https://download.oracle.com/javaee/6/api/javax/inject/Scope.html) annotation. Nevertheless, this one is only intended to be used for creating your own annotations. |
+| @Qualifier          | @Qualifier / @Named   | `javax.inject.Qualifier` is just a meta-annotation for building custom qualifiers. Concrete `String` qualifiers (like Spring’s `@Qualifier` with a value) can be associated through `javax.inject.Named`. |
+| @Value              | -                     | no equivalent                                                |
+| @Required           | -                     | no equivalent                                                |
+| @Lazy               | -                     | no equivalent                                                |
+| ObjectFactory       | Provider              | `javax.inject.Provider` is a direct alternative to Spring’s `ObjectFactory`, only with a shorter `get()` method name. It can also be used in combination with Spring’s `@Autowired` or with non-annotated constructors and setter methods. |
+
 
