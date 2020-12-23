@@ -12,41 +12,26 @@ import javax.validation.ValidatorFactory;
 import java.util.Set;
 
 @Slf4j
-public class ValidatorApp {
+public class ValidatorAppChapter1 {
 
     public static void main(String[] args) {
 
-
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
-
         annotationConfigApplicationContext.scan("com.huilong.chapter1");
-
         annotationConfigApplicationContext.refresh();
 
         PersonDto personDto = new PersonDto();
 
-        Validator validator = annotationConfigApplicationContext.getBean(Validator.class);
-
-        Set<ConstraintViolation<PersonDto>> validate = validator.validate(personDto);
-
-        for (ConstraintViolation<PersonDto> personDtoConstraintViolation : validate) {
-            log.info(personDtoConstraintViolation.getMessage());
-        }
-
         HelloService1 bean = annotationConfigApplicationContext.getBean(HelloService1.class);
 
-//        手动 调用 验证
+//      1、  手动 调用 验证
         ManualVerification(personDto);
 
-
+        // 2、 aop 切面拦截
         bean.SayHello(null);
 
         // 关闭容器
         annotationConfigApplicationContext.close();
-
-
-        // 手动校验
-
 
     }
 

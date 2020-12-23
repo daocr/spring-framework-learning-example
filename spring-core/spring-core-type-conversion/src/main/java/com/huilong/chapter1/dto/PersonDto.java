@@ -14,5 +14,5 @@ public class PersonDto {
 
     @NotNull
     @Max(value = 3)
-    private Integer name;
+    private Integer age;
 }

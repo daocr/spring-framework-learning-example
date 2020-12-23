@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class HelloService1Impl implements HelloService1 {
 
     @Override
-    public void SayHello( String name) {
+    public void SayHello(String name) {
 
         log.info("你好：{}", name);
 
