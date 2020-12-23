@@ -1,4 +1,4 @@
-package com.huilong.chapter3.editor;
+package com.huilong.chapter4.editor;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 时间类型属性编辑器
+ *
  * @author daocr
  * @date 2020/12/23
  */
@@ -16,7 +18,6 @@ import java.util.Date;
 public class MyCustomDateEditor extends PropertyEditorSupport {
 
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 
     @Override
     public String getAsText() {
@@ -33,7 +34,5 @@ public class MyCustomDateEditor extends PropertyEditorSupport {
         Date parse = dateFormat.parse(text);
 
         setValue(parse);
-
-
     }
 }
