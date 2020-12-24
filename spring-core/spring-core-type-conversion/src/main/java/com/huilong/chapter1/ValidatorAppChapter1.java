@@ -4,6 +4,7 @@ import com.huilong.chapter1.dto.PersonDto;
 import com.huilong.chapter1.service.HelloService1;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -16,27 +17,45 @@ public class ValidatorAppChapter1 {
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
-        annotationConfigApplicationContext.scan("com.huilong.chapter1");
-        annotationConfigApplicationContext.refresh();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.scan("com.huilong.chapter1");
+        context.refresh();
 
         PersonDto personDto = new PersonDto();
 
-        HelloService1 bean = annotationConfigApplicationContext.getBean(HelloService1.class);
 
-//      1、  手动 调用 验证
-        ManualVerification(personDto);
+        // 1、  手动 调用 验证
+        manualVerification(personDto);
+
+        // 3、使用 spring LocalValidatorFactoryBean
+        springValidator(context, personDto);
 
         // 2、 aop 切面拦截
+        HelloService1 bean = context.getBean(HelloService1.class);
         bean.SayHello(null);
 
+
         // 关闭容器
-        annotationConfigApplicationContext.close();
+        context.close();
 
     }
 
+
+    private static void springValidator(AnnotationConfigApplicationContext context, PersonDto personDto) {
+
+        LocalValidatorFactoryBean localValidatorFactoryBean = context.getBean(LocalValidatorFactoryBean.class);
+
+        Validator validator = localValidatorFactoryBean.getValidator();
+
+        Set<ConstraintViolation<PersonDto>> validate = validator.validate(personDto);
+
+        for (ConstraintViolation<PersonDto> constraintViolation : validate) {
+            log.info("localValidatorFactoryBean 验证：{} {}", constraintViolation.getPropertyPath(), constraintViolation.getMessage());
+        }
+    }
+
     // 手动 调用 验证
-    private static void ManualVerification(PersonDto personDto) {
+    private static void manualVerification(PersonDto personDto) {
 
 
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();

@@ -4,6 +4,7 @@ import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 import javax.validation.Validation;
@@ -11,7 +12,7 @@ import javax.validation.Validator;
 
 /**
  * 设置快速失败模式
- * 
+ *
  * @author wangji
  */
 @Configuration
@@ -29,7 +30,7 @@ public class HibernateValidatorConfig {
 
     /**
      * 开启快速失败模式，一旦失败立即抛出异常
-     * 
+     *
      * @return
      */
     @Bean
@@ -37,5 +38,16 @@ public class HibernateValidatorConfig {
     public Validator validator() {
         return Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory().getValidator();
     }
+
+    /**
+     *
+     * @return
+     */
+    @Bean
+    public LocalValidatorFactoryBean getLocalValidatorFactoryBean() {
+        return new LocalValidatorFactoryBean();
+    }
+
+
 }
 
