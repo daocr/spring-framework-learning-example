@@ -32,6 +32,11 @@ public class SpElExpressionParserAppChapter1 {
 
     }
 
+    /**
+     * 实际应用
+     *
+     * @param parser
+     */
     private static void practical(ExpressionParser parser) {
         //1、 构建公司对象
         Employee employee = new Employee();
@@ -46,6 +51,11 @@ public class SpElExpressionParserAppChapter1 {
         log.info("实际应用 员工名字：{}", name);
     }
 
+    /**
+     * 表达构建对象
+     *
+     * @param parser
+     */
     private static void constructorObject(ExpressionParser parser) {
         Expression exp = parser.parseExpression("new String('hello world').toUpperCase()");
         String message = exp.getValue(String.class);
@@ -53,6 +63,11 @@ public class SpElExpressionParserAppChapter1 {
         log.info("创建对象访问数据 :{}", message);
     }
 
+    /**
+     * 嵌套访问
+     *
+     * @param parser
+     */
     private static void accessNestedProperty(ExpressionParser parser) {
         // invokes 'getBytes().length'
         Expression exp = parser.parseExpression("'Hello World'.bytes.length");
