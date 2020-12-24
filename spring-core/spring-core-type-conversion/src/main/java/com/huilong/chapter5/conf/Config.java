@@ -4,6 +4,7 @@ import com.huilong.chapter5.converters.PointUsingConverter;
 import com.huilong.chapter5.converters.RectangleUsingConditionalConverter;
 import com.huilong.chapter5.converters.CircleUsingConverterFactory;
 import com.huilong.chapter5.converters.CylinderUsingGenericConverter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
@@ -18,6 +19,7 @@ import java.util.HashSet;
  * @date 2020/12/23
  */
 @Configuration
+@Slf4j
 public class Config {
 
     /**
@@ -52,6 +54,7 @@ public class Config {
         // 添加自定义 转换器
         conversionServiceFactoryBean.setConverters(converters);
 
+        log.info("注册自定义 转换器 成功 ");
         return conversionServiceFactoryBean;
     }
 }
