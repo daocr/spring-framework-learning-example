@@ -1,4 +1,4 @@
-package com.huilong.chapter2.dto;
+package com.huilong.chapter1.dto;
 
 import lombok.Data;
 

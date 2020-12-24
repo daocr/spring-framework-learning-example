@@ -1,6 +1,6 @@
-package com.huilong.chapter4.conf;
+package com.huilong.chapter3.conf;
 
-import com.huilong.chapter4.registrar.MyPropertyEditorRegistrar;
+import com.huilong.chapter3.registrar.MyPropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.CustomEditorConfigurer;

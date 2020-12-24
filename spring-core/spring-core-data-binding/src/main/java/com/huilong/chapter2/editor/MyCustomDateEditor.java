@@ -1,4 +1,4 @@
-package com.huilong.chapter3.editor;
+package com.huilong.chapter2.editor;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.huilong.chapter3.dto;
+package com.huilong.chapter2.dto;
 
 import lombok.Data;
 import lombok.ToString;

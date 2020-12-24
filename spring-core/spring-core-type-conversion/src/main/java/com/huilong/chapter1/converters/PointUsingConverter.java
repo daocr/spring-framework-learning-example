@@ -1,6 +1,6 @@
-package com.huilong.chapter2.converters;
+package com.huilong.chapter1.converters;
 
-import com.huilong.chapter2.dto.Point;
+import com.huilong.chapter1.dto.Point;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 

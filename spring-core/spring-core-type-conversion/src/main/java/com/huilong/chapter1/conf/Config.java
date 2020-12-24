@@ -1,9 +1,9 @@
-package com.huilong.chapter2.conf;
+package com.huilong.chapter1.conf;
 
-import com.huilong.chapter2.converters.CircleUsingConverterFactory;
-import com.huilong.chapter2.converters.PointUsingConverter;
-import com.huilong.chapter2.converters.RectangleUsingConditionalConverter;
-import com.huilong.chapter2.converters.CylinderUsingGenericConverter;
+import com.huilong.chapter1.converters.CircleUsingConverterFactory;
+import com.huilong.chapter1.converters.PointUsingConverter;
+import com.huilong.chapter1.converters.RectangleUsingConditionalConverter;
+import com.huilong.chapter1.converters.CylinderUsingGenericConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

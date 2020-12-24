@@ -1,6 +1,6 @@
-package com.huilong.chapter2.converters;
+package com.huilong.chapter1.converters;
 
-import com.huilong.chapter2.dto.Cylinder;
+import com.huilong.chapter1.dto.Cylinder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.GenericConverter;
