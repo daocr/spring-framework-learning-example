@@ -20,10 +20,9 @@
 
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-expression</artifactId>
             <version>${spring.framework.version}</version>
         </dependency>
 
