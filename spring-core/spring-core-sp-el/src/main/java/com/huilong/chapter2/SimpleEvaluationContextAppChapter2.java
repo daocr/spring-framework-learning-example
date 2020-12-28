@@ -1,24 +1,21 @@
 package com.huilong.chapter2;
 
-import com.huilong.chapter1.dto.Employee;
+import com.huilong.chapter2.dto.Employee;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.SimpleEvaluationContext;
 
 
 /**
- * sp el 入门
+ *  受限制的的上下文
  */
 @Slf4j
 public class SimpleEvaluationContextAppChapter2 {
 
     public static void main(String[] args) {
 
-        SpelParserConfiguration config = new SpelParserConfiguration(true, true);
-
-        ExpressionParser parser = new SpelExpressionParser(config);
+        ExpressionParser parser = new SpelExpressionParser();
 
         //1、 配置 SimpleEvaluationContext
         configSimpleEvaluationContext(parser);
