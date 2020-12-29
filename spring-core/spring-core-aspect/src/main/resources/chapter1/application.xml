@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--    启用 aspectj
+        对应的注解为 @EnableAspectJAutoProxy
+    -->
+    <aop:aspectj-autoproxy/>
+
+    <bean id="helloService" class="com.huilong.chapter1.service.impl.HelloServiceImpl"/>
+
+    <!--    注册切面-->
+    <bean id="myAspect" class="com.huilong.chapter1.aspect.MyAspect"></bean>
+
+
+    <!-- /**
+
+     * 定义切入点 语法
+     * <pre>
+     *         execution(public * *(..))                                            匹配任何共有方法
+     *         execution(* set*(..))                                                匹配任何set方法
+     *         execution(* com.xyz.service.AccountService.*(..))                    匹配AccountService 接口的任何方法
+     *         execution(* com.xyz.service.*.*(..))                                 匹配com.xyz.service 包下的所有方法，但是不包括子包
+     *         execution(* com.xyz.service..*.*(..))                                匹配com.xyz.service 包下的所有方法，但是包括子包
+     *
+     *         within(com.xyz.service.*)                                            匹配com.xyz.service 包下的所有方法，但是不包括子包  ；仅在Spring AOP中执行方法
+     *         within(com.xyz.service..*)                                           匹配com.xyz.service 包下的所有方法，但是包括子包    ；仅在Spring AOP中执行方法
+     *
+     *         this(com.xyz.service.AccountService)                                 匹配AccountService 接口的任何方法                 ；仅在Spring AOP中执行方法
+     *
+     *         target(com.xyz.service.AccountService)                               匹配AccountService 实现类所以的方法                ；仅在Spring AOP中执行方法
+     *
+     *         args(java.io.Serializable)                                           匹配单个参数实现了Serializable 的方法               ；仅在Spring AOP中执行方法
+     *
+     *         @target(org.springframework.transaction.annotation.Transactional) 匹配使用Transactional 注解的方法                      ；仅在Spring AOP中执行方法
+     *         @within(org.springframework.transaction.annotation.Transactional) 匹配使用Transactional 注解的方法                      ；仅在Spring AOP中执行方法
+     *         @annotation(org.springframework.transaction.annotation.Transactional)匹配使用Transactional 注解的方法                   ；仅在Spring AOP中执行方法
+     *
+     *         bean(tradeService)                                                   匹配bean name 是tradeService                      ；仅在Spring AOP中执行方法
+     *         bean(*Service)                                                       匹配bean name 后缀是 Service                       ；仅在Spring AOP中执行方法
+     *
+     * </pre>
+
+     */-->
+    <aop:config>
+        <!--        定义切面-->
+        <aop:aspect ref="myAspect">
+            <!--            定义切入点-->
+            <aop:pointcut id="myLogAspectPoint"
+                          expression="@annotation(com.huilong.chapter1.LogAspect) &amp;&amp;@annotation(logAspect)"/>
+            <!--            定义通知类型-->
+            <aop:before method="before" pointcut-ref="myLogAspectPoint"/>
+            <aop:after method="after" pointcut-ref="myLogAspectPoint"/>
+            <aop:after-returning method="afterReturning" pointcut-ref="myLogAspectPoint" returning="retVal"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="myLogAspectPoint" throwing="ex"/>
+            <aop:around method="around" pointcut-ref="myLogAspectPoint"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
