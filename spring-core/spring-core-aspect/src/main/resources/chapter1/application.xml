@@ -8,6 +8,7 @@
 
     <!--    启用 aspectj
         对应的注解为 @EnableAspectJAutoProxy
+        proxy-target-class = true 是引用 cglib 代理
     -->
     <aop:aspectj-autoproxy/>
 
