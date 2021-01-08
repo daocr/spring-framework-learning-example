@@ -1,5 +1,6 @@
 package com.huilong.chapter4;
 
+import com.huilong.chapter4.config.Config;
 import com.huilong.chapter4.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.ProxyFactory;
@@ -30,6 +31,7 @@ public class HotSwappableTargetSourceApp {
                 Thread.sleep(5000);
                 HotSwappableTargetSource bean = applicationContext.getBean(HotSwappableTargetSource.class);
                 HelloService helloServiceV2 = applicationContext.getBean("helloServiceV2", HelloService.class);
+                // 切换实现类
                 bean.swap(helloServiceV2);
                 log.info("\n\n-----------切换成功----------\n\n");
             } catch (InterruptedException e) {

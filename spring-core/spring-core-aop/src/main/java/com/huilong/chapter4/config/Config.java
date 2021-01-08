@@ -1,4 +1,4 @@
-package com.huilong.chapter4;
+package com.huilong.chapter4.config;
 
 import com.huilong.chapter4.advice.MyAfterReturningAdvice;
 import com.huilong.chapter4.advice.MyAroundAdvice;
