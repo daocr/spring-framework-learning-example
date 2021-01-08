@@ -14,7 +14,10 @@ import org.aopalliance.intercept.MethodInvocation;
 public class MyAroundAdvice implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        log.info("环绕通知");
-        return invocation.proceed();
+        log.info("开始环绕通知");
+        Object proceed = invocation.proceed();
+        log.info("结束环绕通知");
+        return proceed;
+
     }
 }

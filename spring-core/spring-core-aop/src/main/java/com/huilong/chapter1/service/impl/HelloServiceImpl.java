@@ -15,6 +15,9 @@ public class HelloServiceImpl implements HelloService {
 
         log.info("你好：{}", name);
 
-        throw new RuntimeException();
+        if ("赵六".equals(name)) {
+            throw new RuntimeException();
+        }
+
     }
 }

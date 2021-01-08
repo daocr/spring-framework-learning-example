@@ -12,6 +12,8 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 
 /**
+ * {@link ProxyFactory} 的使用
+ *
  * @author daocr
  * @date 2020/12/31
  */
@@ -31,12 +33,17 @@ public class ProxyFactoryApp {
 
 
 //        helloProxyFactory.addAdvice(new MyMethodBeforeAdvice());
+        // 后置通知
         helloProxyFactory.addAdvice(new MyAfterReturningAdvice());
+        // 异常通知
         helloProxyFactory.addAdvice(new MyThrowsAdvice());
+        // 环绕通知
         helloProxyFactory.addAdvice(new MyAroundAdvice());
 
         HelloService proxy = (HelloService) helloProxyFactory.getProxy();
-        proxy.SayHello("aa");
+        proxy.SayHello("王五");
+
+        proxy.SayHello("赵六");
         log.info("proxy class name ：{}", proxy.getClass().getName());
 
     }
