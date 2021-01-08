@@ -1,10 +1,11 @@
 package com.huilong.chapter2;
 
+import com.huilong.chapter2.config.BeanConfig;
 import com.huilong.chapter2.service.HelloService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * 自动创建代理
+ * 自动创建代理 {@link BeanConfig}
  *
  * @author daocr
  * @date 2021/1/8
