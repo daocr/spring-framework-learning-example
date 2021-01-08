@@ -22,6 +22,8 @@ public class BeanConfig {
      *
      * <pre class=code>
      *
+     * 实现原理
+     *
      *  通过 org.springframework.beans.factory.config.BeanPostProcessor#postProcessAfterInitialization(java.lang.Object, java.lang.String) 返回代理对象
      *
      * {@link AbstractAutoProxyCreator#postProcessAfterInitialization(java.lang.Object, java.lang.String)}
