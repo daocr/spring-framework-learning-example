@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-core-logging-logback</module>
+        <module>spring-core-logging-Log4j-2x</module>
     </modules>
 
     <parent>

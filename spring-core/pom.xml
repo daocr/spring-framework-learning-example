@@ -21,6 +21,7 @@
         <module>spring-core-aspect</module>
         <module>spring-core-aop</module>
         <module>spring-core-logging</module>
+        <module>spring-core-data-buffer</module>
     </modules>
 
 
