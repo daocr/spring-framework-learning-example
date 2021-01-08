@@ -14,14 +14,14 @@ public class Chapter5App {
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-        annotationConfigApplicationContext.scan("com.huilong.chapter5");
+        applicationContext.scan("com.huilong.chapter5");
 
-        annotationConfigApplicationContext.refresh();
+        applicationContext.refresh();
 
         // 关闭容器
-        annotationConfigApplicationContext.close();
+        applicationContext.close();
 
     }
 

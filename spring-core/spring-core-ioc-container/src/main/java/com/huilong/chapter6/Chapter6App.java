@@ -16,20 +16,20 @@ public class Chapter6App {
     public static void main(String[] args) {
 
 
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-        annotationConfigApplicationContext.scan("com.huilong.chapter6");
+        applicationContext.scan("com.huilong.chapter6");
 
-        annotationConfigApplicationContext.refresh();
+        applicationContext.refresh();
 
         HelloService helloService
-                = annotationConfigApplicationContext.getBean(HelloService.class);
+                = applicationContext.getBean(HelloService.class);
 
         helloService.SayHello("李四");
 
 
         // 关闭容器
-        annotationConfigApplicationContext.close();
+        applicationContext.close();
 
     }
 

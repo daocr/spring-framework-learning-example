@@ -16,15 +16,15 @@ public class Chapter5App {
     public static void main(String[] args) {
 
         // 加载配置
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter4/application.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("chapter4/application.xml");
 
         // 获取 对象
-        HelloService4 helloService = classPathXmlApplicationContext.getBean(HelloService4.class);
+        HelloService4 helloService = applicationContext.getBean(HelloService4.class);
         helloService.SayHello("张三");
 
 
         // 关闭容器
-        classPathXmlApplicationContext.close();
+        applicationContext.close();
 
     }
 

@@ -32,12 +32,12 @@ public class Chapter7App {
     }
 
     private static void createClassPathXmlApplicationContext() {
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("chapter7/application.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("chapter7/application.xml");
 
-        test(classPathXmlApplicationContext);
+        test(applicationContext);
 
         // 关闭容器
-        classPathXmlApplicationContext.close();
+        applicationContext.close();
     }
 
 

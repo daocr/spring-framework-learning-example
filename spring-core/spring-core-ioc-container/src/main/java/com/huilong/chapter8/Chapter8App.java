@@ -17,9 +17,9 @@ public class Chapter8App {
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-        annotationConfigApplicationContext.scan("com.huilong.chapter8");
+        applicationContext.scan("com.huilong.chapter8");
 
         /**
          * 激活环境
@@ -27,7 +27,7 @@ public class Chapter8App {
          * 2、命令行参数激活 -Dspring.profiles.active="profile1,profile2"
          */
 
-        ConfigurableEnvironment environment = annotationConfigApplicationContext.getEnvironment();
+        ConfigurableEnvironment environment = applicationContext.getEnvironment();
         environment.addActiveProfile("dev");
 
 
@@ -36,10 +36,10 @@ public class Chapter8App {
         log.info("目前激活的环境有：{}", activeProfiles);
 
 
-        annotationConfigApplicationContext.refresh();
+        applicationContext.refresh();
 
         // 关闭容器
-        annotationConfigApplicationContext.close();
+        applicationContext.close();
 
     }
 

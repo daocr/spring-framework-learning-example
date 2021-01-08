@@ -12,7 +12,7 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 
 /**
- * {@link ProxyFactory} 的使用
+ * 手动创建代理 {@link ProxyFactory} 的使用
  *
  * @author daocr
  * @date 2020/12/31
