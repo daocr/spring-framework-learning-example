@@ -14,22 +14,38 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 配置 热更新
+ *
  * @author daocr
  * @date 2021/1/8
  */
 @Configuration
 public class Config {
 
+    /**
+     * 1、声明热更新
+     *
+     * @param helloServiceV1
+     * @return
+     */
     @Bean
     public HotSwappableTargetSource getHotSwappableTargetSource(@Autowired HelloService helloServiceV1) {
+        // 代理
         HotSwappableTargetSource hotSwappableTargetSource = new HotSwappableTargetSource(helloServiceV1);
         return hotSwappableTargetSource;
     }
 
+    /**
+     * 2、声明代理
+     *
+     * @param hotSwappableTargetSource
+     * @return
+     */
     @Bean("myProxyFactory")
     public ProxyFactory getProxyFactory(@Autowired HotSwappableTargetSource hotSwappableTargetSource) {
 
         ProxyFactory helloProxyFactory = new ProxyFactory();
+        //代理热更新对象
         helloProxyFactory.setTargetSource(hotSwappableTargetSource);
         helloProxyFactory.setInterfaces(HelloService.class);
 
@@ -38,7 +54,6 @@ public class Config {
         pointcut.setExpression("execution(* com.huilong.chapter4.service.HelloService*.*(..))");
         DefaultPointcutAdvisor defaultPointcutAdvisor = new DefaultPointcutAdvisor(pointcut, new MyMethodBeforeAdvice());
         helloProxyFactory.addAdvisor(defaultPointcutAdvisor);
-
 
 //        helloProxyFactory.addAdvice(new MyMethodBeforeAdvice());
         // 后置通知

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * 动态切换代理对象
+ * 查看 配置 {@link Config}
  *
  * @author daocr
  * @date 2021/1/8
@@ -25,12 +26,12 @@ public class HotSwappableTargetSourceApp {
 
         new Thread(() -> {
             try {
-                log.info("5秒后切换");
+                log.info("---------5秒后切换-------------");
                 Thread.sleep(5000);
                 HotSwappableTargetSource bean = applicationContext.getBean(HotSwappableTargetSource.class);
                 HelloService helloServiceV2 = applicationContext.getBean("helloServiceV2", HelloService.class);
                 bean.swap(helloServiceV2);
-                log.info("切换成功");
+                log.info("\n\n-----------切换成功----------\n\n");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
