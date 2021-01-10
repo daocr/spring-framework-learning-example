@@ -12,6 +12,7 @@
 
     <artifactId>spring-web-mvc</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>spring-web-mvc-dispatcher-servlet</module>
     </modules>
