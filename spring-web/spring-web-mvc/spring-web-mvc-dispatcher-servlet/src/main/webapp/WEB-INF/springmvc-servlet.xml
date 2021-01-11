@@ -8,10 +8,9 @@
 
     <context:component-scan base-package="com.huilong"/>
 
-    <mvc:annotation-driven/>
+<!--    <mvc:annotation-driven/>-->
 
     <mvc:resources location="/static/" mapping="/static/**"/>
-
 
     <!-- 模板解析器  -->
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
@@ -31,4 +30,6 @@
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
+
+    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
 </beans>

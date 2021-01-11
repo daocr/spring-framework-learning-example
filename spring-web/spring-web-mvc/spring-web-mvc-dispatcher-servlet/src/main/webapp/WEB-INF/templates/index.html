@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
 
+<div id="app">
+    {{ message }}
+
+    <ol>
+        <li v-for="todo in todos" v-on:click="ck">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        methods:{
+            ck: function () {
+                alert("11")
+            }
+
+        },
+        data: {
+            message: 'Hello Vue!',
+            todos: [
+                {text: '学习 JavaScript'},
+                {text: '学习 Vue'},
+                {text: '整个牛项目'}
+            ]
+        }
+    })
+</script>
 </body>
+
 </html>

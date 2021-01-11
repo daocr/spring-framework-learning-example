@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/springmvc")
 public class Test {
-    public Test(){
+    public Test() {
         System.out.println("a----");
     }
+
     @RequestMapping("/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 }
