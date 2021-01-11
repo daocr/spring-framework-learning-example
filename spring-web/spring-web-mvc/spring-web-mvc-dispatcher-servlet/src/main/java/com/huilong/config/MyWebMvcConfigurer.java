@@ -18,6 +18,13 @@ import java.util.List;
 
 /**
  * spring mvc 配置
+ * <p>
+ * 加载时机
+ * 1、实例化
+ * {@link org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration}
+ * <p>
+ * <p>
+ * 2、实例化 {@link WebMvcConfigurationSupport} 类标有 @bean 注解的方法
  *
  * @author daocr
  * @date 2021/1/10
@@ -30,6 +37,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     /**
      * 配置映射关系
+     * 调用关系
+     * {@link WebMvcConfigurationSupport#mvcResourceUrlProvider()}
      *
      * @param configurer
      */
@@ -42,6 +51,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     /**
      * 协商返回内容
+     * <p>
+     * 加载时机：{@link WebMvcConfigurationSupport#mvcContentNegotiationManager()}
+     *
      * <p>
      * xml 配置
      * <pre class=code>
@@ -70,6 +82,11 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      * 配置异步请求
      * <p>
      * <p>
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerAdapter(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     * {@link WebMvcConfigurationSupport#getAsyncSupportConfigurer()}
+     * <p>
+     * <p>
      * 配置回调拦截器      ：{@link AsyncSupportConfigurer#registerCallableInterceptors(org.springframework.web.context.request.async.CallableProcessingInterceptor...)}
      * 配置               ：{@link AsyncSupportConfigurer#registerDeferredResultInterceptors(org.springframework.web.context.request.async.DeferredResultProcessingInterceptor...)}
      * 配置线程池          ：{@link  AsyncSupportConfigurer#setTaskExecutor(org.springframework.core.task.AsyncTaskExecutor)}
@@ -79,22 +96,40 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
-
+        log.info("configureAsyncSupport");
     }
 
 
+    /**
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#defaultServletHandlerMapping()}
+     *
+     * @param configurer
+     */
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-
+        log.info("configureDefaultServletHandling");
     }
 
+    /**
+     * 加载时机
+     * <p>
+     * {@link WebMvcConfigurationSupport#mvcConversionService()}
+     *
+     * @param registry
+     */
     @Override
     public void addFormatters(FormatterRegistry registry) {
 
+        log.info("addFormatters");
     }
 
     /**
      * 添加拦截器
+     * 加载时机：
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerMapping(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
+     * <p>
+     * {@link WebMvcConfigurationSupport#getInterceptors(org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
      *
      * @param registry
      */
@@ -110,6 +145,11 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     /**
      * 配置静态资源
+     * 加载时机：
+     * {@link WebMvcConfigurationSupport#resourceHandlerMapping(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
+     * <p>
+     * {@link DelegatingWebMvcConfiguration#addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry)}
+     * <p>
      * xml 配置
      * <pre class=codd>
      *          <mvc:resources mapping="/resources/**" location="/public, classpath:/static/" cache-period="31556926" />
@@ -129,10 +169,14 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      * 跨域设置
      * <p>
      * xml 配置
+     * <p>
+     * 加载时机：
+     * <p>
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerMapping(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
+     * {@link WebMvcConfigurationSupport#getCorsConfigurations()}
      *
      * <pre class=code>
      *          <mvc:cors>
-     *
      *              <mvc:mapping path="/api/**"
      *                  allowed-origins="https://domain1.com, https://domain2.com"
      *                  allowed-methods="GET, PUT"
@@ -160,6 +204,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     /**
      * 添加无业务逻辑的调整，例如设置主页
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#viewControllerHandlerMapping(org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
+     * {@link DelegatingWebMvcConfiguration#addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry)}
      *
      * @param registry
      */
@@ -171,28 +218,41 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     /**
      * 视图解析器
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#mvcViewResolver(org.springframework.web.accept.ContentNegotiationManager)}
+     * {@link WebMvcConfigurationSupport#configureViewResolvers(org.springframework.web.servlet.config.annotation.ViewResolverRegistry)}
      *
      * @param registry
      */
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
 
+        log.info("configureViewResolvers");
 
     }
 
     /**
      * 请求参数解析器
+     * <p>
+     * 加载时机
+     * <p>
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerAdapter(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     * s    * <p>
+     * {@link WebMvcConfigurationSupport#getArgumentResolvers()}
      *
      * @param resolvers
      */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 
-
+        log.info("addArgumentResolvers");
     }
 
     /**
      * 返回参数处理
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerAdapter(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     * {@link WebMvcConfigurationSupport#getReturnValueHandlers()}
      *
      * @param handlers
      */
@@ -200,30 +260,44 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
 
+        log.info("addReturnValueHandlers");
     }
 
     /**
      * 配置请求数据格式转换
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#routerFunctionMapping(org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
+     * {@link WebMvcConfigurationSupport#getMessageConverters()}
      *
      * @param converters
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 
+        log.info("configureMessageConverters");
     }
 
     /**
      * 配置请求数据格式转换
+     * <p>
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#routerFunctionMapping(org.springframework.format.support.FormattingConversionService, org.springframework.web.servlet.resource.ResourceUrlProvider)}
+     * {@link WebMvcConfigurationSupport#getMessageConverters()}
      *
      * @param converters
      */
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 
+        log.info("extendMessageConverters");
     }
 
     /**
      * 配置异常处理器
+     * <p>
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#handlerExceptionResolver(org.springframework.web.accept.ContentNegotiationManager)}
+     * {@link DelegatingWebMvcConfiguration#configureHandlerExceptionResolvers(java.util.List)}
      *
      * @param resolvers
      */
@@ -231,20 +305,30 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
 
+        log.info("configureHandlerExceptionResolvers");
     }
 
     /**
      * 配置异常处理器
+     * <p>
+     * <p>
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#handlerExceptionResolver(org.springframework.web.accept.ContentNegotiationManager)}
+     * {@link DelegatingWebMvcConfiguration#extendHandlerExceptionResolvers(java.util.List)}
      *
      * @param resolvers
      */
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-
+        log.info("extendHandlerExceptionResolvers");
     }
 
     /**
      * 配置数据验证
+     * <p>
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#mvcValidator()}
+     * {@link WebMvcConfigurationSupport#getValidator()}
      *
      * <pre class=code>
      *          <mvc:annotation-driven validator="globalValidator"/>
@@ -254,11 +338,21 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public Validator getValidator() {
+
+        log.info("getValidator");
         return null;
     }
 
+    /**
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerAdapter(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     * {@link WebMvcConfigurationSupport#getConfigurableWebBindingInitializer(org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     *
+     * @return
+     */
     @Override
     public MessageCodesResolver getMessageCodesResolver() {
+        log.info("getMessageCodesResolver");
         return null;
     }
 }

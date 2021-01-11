@@ -1,6 +1,6 @@
 package com.huilong.controller;
 
-import com.huilong.controller.param.Person;
+import com.huilong.controller.param.PersonParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +16,9 @@ class PersonController {
      * @return
      */
     @GetMapping("/{id}")
-    public Person getPerson(@PathVariable Integer id) {
+    public PersonParam getPerson(@PathVariable Integer id) {
 
-        Person person = new Person();
+        PersonParam person = new PersonParam();
 
         person.setId(id);
         person.setName("张三");
