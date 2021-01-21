@@ -1,4 +1,4 @@
-package com.huilong.mvc.controller.annotated;
+package com.huilong.controller.annotated;
 
 /**
  * 异常处理

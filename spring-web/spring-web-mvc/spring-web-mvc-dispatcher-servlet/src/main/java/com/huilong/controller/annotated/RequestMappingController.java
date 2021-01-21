@@ -1,4 +1,4 @@
-package com.huilong.mvc.controller.annotated;
+package com.huilong.controller.annotated;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

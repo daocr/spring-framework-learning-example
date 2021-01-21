@@ -1,4 +1,4 @@
-package com.huilong.mvc.controller.cache;
+package com.huilong.controller.cache;
 
 /**
  *  缓存

@@ -1,4 +1,4 @@
-package com.huilong.mvc.controller.endpoints;
+package com.huilong.controller.endpoints;
 
 /**
  * @author daocr

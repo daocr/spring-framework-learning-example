@@ -1,5 +1,6 @@
-package com.huilong.mvc.controller.cors;
+package com.huilong.controller.cors;
 
+import com.huilong.config.MyWebMvcConfigurer;
 import com.huilong.model.vo.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 /**
  * 跨域配置
  * <p>
- * 全局跨域配置 {@link com.huilong.mvc.config.MyWebMvcConfigurer#addCorsMappings(CorsRegistry)}
+ * 全局跨域配置 {@link MyWebMvcConfigurer#addCorsMappings(CorsRegistry)}
  *
  * @author daocr
  * @date 2021/1/11
