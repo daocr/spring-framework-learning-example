@@ -1,4 +1,4 @@
-package com.huilong.controller.vo;
+package com.huilong.model.vo;
 
 import lombok.Data;
 

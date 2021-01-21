@@ -139,7 +139,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
         log.info("添加拦截器 addInterceptors");
-        registry.addInterceptor(new MyInterception());
+        registry.addInterceptor(new MyInterception()).addPathPatterns("/");
 
     }
 
@@ -194,12 +194,14 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
 
-        registry.addMapping("/api/**")
-                .allowedOrigins("https://domain2.com")
-                .allowedMethods("PUT", "DELETE")
-                .allowedHeaders("header1", "header2", "header3")
-                .exposedHeaders("header1", "header2")
-                .allowCredentials(true).maxAge(3600);
+//        registry.addMapping("/api/**")
+//                .allowedOrigins("https://domain2.com")
+//                .allowedMethods("PUT", "DELETE")
+//                .allowedHeaders("header1", "header2", "header3")
+//                .exposedHeaders("header1", "header2")
+//                .allowCredentials(true).maxAge(3600);
+
+
     }
 
     /**
@@ -214,6 +216,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
 
         registry.addViewController("/").setViewName("/index");
+
+        registry.addViewController("/websokect").setViewName("/websokect/webSocketHome");
     }
 
     /**
@@ -261,6 +265,20 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
 
         log.info("addReturnValueHandlers");
+    }
+
+
+    /**
+     * 加载时机
+     * {@link WebMvcConfigurationSupport#requestMappingHandlerAdapter(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     * {@link WebMvcConfigurationSupport#getConfigurableWebBindingInitializer(org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
+     *
+     * @return
+     */
+    @Override
+    public MessageCodesResolver getMessageCodesResolver() {
+        log.info("getMessageCodesResolver");
+        return null;
     }
 
     /**
@@ -343,16 +361,5 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         return null;
     }
 
-    /**
-     * 加载时机
-     * {@link WebMvcConfigurationSupport#requestMappingHandlerAdapter(org.springframework.web.accept.ContentNegotiationManager, org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
-     * {@link WebMvcConfigurationSupport#getConfigurableWebBindingInitializer(org.springframework.format.support.FormattingConversionService, org.springframework.validation.Validator)}
-     *
-     * @return
-     */
-    @Override
-    public MessageCodesResolver getMessageCodesResolver() {
-        log.info("getMessageCodesResolver");
-        return null;
-    }
+
 }

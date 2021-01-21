@@ -32,6 +32,13 @@
             <version>1</version>
         </dependency>
 
+        <!--        jdk 11 删除了 javax.annotation.PostConstruct 等注解，所以需要添加此jar 包-->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

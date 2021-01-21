@@ -8,11 +8,12 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 控制层
+ * 有经验的编程
  *
  * @author daocr
  * @date 2021/1/8
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Controller
 @RequestMapping("/springmvc")
-public class MyController {
+public class ExpertController {
 
     @RequestMapping("/index")
     public String index() {

@@ -7,6 +7,16 @@ import org.springframework.stereotype.Component;
 
 /**
  * 获取文件资源上下文
+ * <p>
+ * <p>
+ * * 加载原理
+ * * <p>
+ * * {@link AbstractApplicationContext#refresh()}
+ * * <p>
+ * * {@link AbstractApplicationContext#prepareBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)}
+ * * <p>
+ * * {@link  org.springframework.context.support.ApplicationContextAwareProcessor#postProcessBeforeInitialization(java.lang.Object, java.lang.String)}
+ * *
  *
  * @author daocr
  * @date 2020/12/14

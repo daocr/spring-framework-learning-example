@@ -1,9 +1,7 @@
-package com.huilong.controller;
+package com.huilong.mvc.controller.cors;
 
-import com.huilong.controller.vo.Person;
+import com.huilong.model.vo.Person;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
-import java.util.List;
-
 /**
  * 跨域配置
  * <p>
- * 全局跨域配置 {@link com.huilong.config.MyWebMvcConfigurer#addCorsMappings(CorsRegistry)}
+ * 全局跨域配置 {@link com.huilong.mvc.config.MyWebMvcConfigurer#addCorsMappings(CorsRegistry)}
  *
  * @author daocr
  * @date 2021/1/11

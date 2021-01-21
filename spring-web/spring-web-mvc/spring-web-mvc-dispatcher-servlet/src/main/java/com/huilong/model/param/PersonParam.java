@@ -1,4 +1,4 @@
-package com.huilong.controller.param;
+package com.huilong.model.param;
 
 import lombok.Data;
 

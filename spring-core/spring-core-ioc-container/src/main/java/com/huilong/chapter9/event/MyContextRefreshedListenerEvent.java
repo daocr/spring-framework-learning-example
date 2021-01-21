@@ -8,6 +8,16 @@ import org.springframework.stereotype.Component;
 
 /**
  * 容器刷新事件，可能会触发多次
+ * <p>
+ * 加载原理
+ * <p>
+ * {@link AbstractApplicationContext#refresh()}
+ * <p>
+ * {@link AbstractApplicationContext#prepareBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)}
+ * <p>
+ * {@link  org.springframework.context.support.ApplicationContextAwareProcessor#postProcessBeforeInitialization(java.lang.Object, java.lang.String)}
+ * <p>
+ * {@link org.springframework.context.support.ApplicationListenerDetector#postProcessAfterInitialization(java.lang.Object, java.lang.String)}
  *
  * @author daocr
  * @date 2020/12/18
