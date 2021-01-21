@@ -8,11 +8,11 @@
 
     <context:component-scan base-package="com.huilong"/>
 
-<!--    <mvc:annotation-driven/>-->
+    <!--    <mvc:annotation-driven/>-->
 
     <mvc:resources location="/static/" mapping="/static/**"/>
 
-    <!-- 模板解析器  -->
+    <!-- start 模板解析器  -->
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/"/>
         <property name="suffix" value=".html"/>
@@ -29,7 +29,20 @@
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
+    <!-- end  模板解析器  -->
 
+    <!--    start 配置 json 解析器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
 
-    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
+    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="contentType" value="application/json"/>
+    </bean>
+    <!--    end 配置 json 解析器-->
+
 </beans>
