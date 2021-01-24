@@ -2,12 +2,14 @@ package com.huilong.controller.annotated;
 
 import com.huilong.config.MyWebMvcConfigurer;
 import com.huilong.model.vo.R;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.util.UriComponentsBuilder;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -23,18 +25,6 @@ import java.util.TimeZone;
 @RestController
 @RequestMapping("/springmvc/request-mapping")
 class RequestMappingController {
-
-
-    /**
-     * 跳转到演示主页
-     *
-     * @return
-     */
-    @GetMapping("/to-index")
-    public String toIndex() {
-
-        return "";
-    }
 
 
     /**
@@ -61,17 +51,17 @@ class RequestMappingController {
             @PathVariable(name = "pathQuery") String pathVariable,
             @RequestParam(name = "requestParam", required = false) String requestParam,
             @RequestHeader("Accept-Encoding") String encoding,
-            @CookieValue(value = "JSESSIONID", required = false) String cookie,
-            WebRequest webRequest,
-            NativeWebRequest nativeWebRequest,
-            ServletRequest servletRequest,
-            ServletResponse servletResponse,
-            HttpSession httpSession,
-            HttpMethod httpMethod,
-            Locale locale,
-            TimeZone timeZone,
-            ZoneId zoneId,
-            UriComponentsBuilder uriComponentsBuilder) {
+            @ApiParam(type = "cookie") @CookieValue(value = "JSESSIONID", required = false) String cookie,
+            @ApiIgnore WebRequest webRequest,
+            @ApiIgnore NativeWebRequest nativeWebRequest,
+            @ApiIgnore ServletRequest servletRequest,
+            @ApiIgnore ServletResponse servletResponse,
+            @ApiIgnore HttpSession httpSession,
+            @ApiIgnore HttpMethod httpMethod,
+            @ApiIgnore Locale locale,
+            @ApiIgnore TimeZone timeZone,
+            @ApiIgnore ZoneId zoneId,
+            @ApiIgnore UriComponentsBuilder uriComponentsBuilder) {
 
         log.info("get 请求,params：" +
                 "\n@PathVariable pathVariable：" + pathVariable + "," +

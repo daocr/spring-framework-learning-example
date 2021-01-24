@@ -1,17 +1,24 @@
 package com.huilong.model.vo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 返回结果集
  *
  * @author daocr
  * @date 2021/1/21
  */
+@ApiModel(description = "基础返回类")
 public class R<T> {
 
+    @ApiModelProperty(value = "具体返回数据")
     private final T data;
 
+    @ApiModelProperty(value = "返回错误代码", example = "200")
     private final Integer code;
 
+    @ApiModelProperty(value = "返回错误消息", example = SUCCESS_MSG)
     private final String msg;
 
 

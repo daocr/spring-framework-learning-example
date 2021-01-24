@@ -1,6 +1,9 @@
 package com.huilong.controller.annotated;
 
+import com.huilong.model.vo.Person;
 import com.huilong.model.vo.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -28,6 +32,7 @@ import java.util.TimeZone;
  */
 @Slf4j
 @Controller
+@Api(tags = "异常处理")
 @RequestMapping("/springmvc/exception")
 public class ExceptionController {
 
@@ -47,9 +52,10 @@ public class ExceptionController {
      *
      * @return
      */
+    @ApiOperation(value = "触发 NumberFormatException 异常")
     @GetMapping("trigger-number-format-exception")
     @ResponseBody
-    public String triggerNumberFormatException(NumberFormatException e) {
+    public R<Person> triggerNumberFormatException(@ApiIgnore NumberFormatException e) {
         throw new NumberFormatException("触发 NumberFormatException 异常");
     }
 

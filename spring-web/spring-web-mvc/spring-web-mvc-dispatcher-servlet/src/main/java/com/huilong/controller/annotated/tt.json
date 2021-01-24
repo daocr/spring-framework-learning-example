@@ -1,0 +1,530 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "一个可简单实用、可深入学习的 spring mvc demo",
+    "version": "spring 5.x",
+    "title": " spring mvc 学习 例子",
+    "contact": {
+      "name": "微信号：anonymous-jj",
+      "email": "admi_nistrator@qq.com"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "expert-controller",
+      "description": "Expert Controller"
+    },
+    {
+      "name": "request-mapping-controller",
+      "description": "Request Mapping Controller"
+    },
+    {
+      "name": "异常处理",
+      "description": "Exception Controller"
+    },
+    {
+      "name": "跨域 配置 学习",
+      "description": "Cors Controller"
+    }
+  ],
+  "paths": {
+    "/cors/allow-domain2": {
+      "get": {
+        "tags": [
+          "跨域 配置 学习"
+        ],
+        "summary": "allowDomain2",
+        "operationId": "allowDomain2UsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/cors/cors-all": {
+      "get": {
+        "tags": [
+          "跨域 配置 学习"
+        ],
+        "summary": "corsAll",
+        "operationId": "corsAllUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/springmvc/exception/to-index": {
+      "get": {
+        "tags": [
+          "异常处理"
+        ],
+        "summary": "toIndex",
+        "operationId": "toIndexUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/springmvc/exception/trigger-number-format-exception": {
+      "get": {
+        "tags": [
+          "异常处理"
+        ],
+        "summary": "触发 NumberFormatException 异常",
+        "operationId": "triggerNumberFormatExceptionUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/R«Person»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/springmvc/index": {
+      "get": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "expert-controller"
+        ],
+        "summary": "index",
+        "operationId": "indexUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/springmvc/request-mapping/method-get/matrixVariable/{id}": {
+      "get": {
+        "tags": [
+          "request-mapping-controller"
+        ],
+        "summary": "methodGetMatrixVariable",
+        "operationId": "methodGetMatrixVariableUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "age",
+            "in": "query",
+            "description": "age",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/R"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/springmvc/request-mapping/method-get/{pathQuery}": {
+      "get": {
+        "tags": [
+          "request-mapping-controller"
+        ],
+        "summary": "methodGet",
+        "operationId": "methodGetUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "Accept-Encoding",
+            "in": "header",
+            "description": "Accept-Encoding",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cookie",
+            "in": "query",
+            "description": "cookie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pathQuery",
+            "in": "path",
+            "description": "pathQuery",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "requestParam",
+            "in": "query",
+            "description": "requestParam",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/R"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Person": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "人员 id"
+        },
+        "name": {
+          "type": "string",
+          "description": "人员名称"
+        }
+      },
+      "title": "Person",
+      "description": "人员"
+    },
+    "R": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "example": 200,
+          "description": "返回错误代码"
+        },
+        "data": {
+          "type": "object",
+          "description": "具体返回数据"
+        },
+        "msg": {
+          "type": "string",
+          "example": "操作成功",
+          "description": "返回错误消息"
+        }
+      },
+      "title": "R",
+      "description": "基础返回类"
+    },
+    "R«Person»": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "example": 200,
+          "description": "返回错误代码"
+        },
+        "data": {
+          "description": "具体返回数据",
+          "$ref": "#/definitions/Person"
+        },
+        "msg": {
+          "type": "string",
+          "example": "操作成功",
+          "description": "返回错误消息"
+        }
+      },
+      "title": "R«Person»",
+      "description": "基础返回类"
+    }
+  }
+}
