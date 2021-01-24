@@ -2,6 +2,7 @@ package com.huilong.controller.cors;
 
 import com.huilong.config.MyWebMvcConfigurer;
 import com.huilong.model.vo.Person;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,20 +21,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
  */
 @Slf4j
 @RestController
+@Api(tags = "跨域 配置 学习")
 @RequestMapping("/cors")
 public class CorsController {
-
-    /**
-     * 跨域首页
-     *
-     * @param model
-     * @return
-     */
-    @GetMapping("/index")
-    public String handle(Model model) {
-        return "cors";
-    }
-
 
     /**
      * 允许所有的请求

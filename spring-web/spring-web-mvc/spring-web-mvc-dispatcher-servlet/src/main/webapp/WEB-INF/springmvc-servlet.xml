@@ -8,9 +8,12 @@
 
     <context:component-scan base-package="com.huilong"/>
 
+
+    <mvc:annotation-driven enable-matrix-variables="true"></mvc:annotation-driven>
+
     <!--    <mvc:annotation-driven/>-->
 
-    <mvc:resources location="/static/" mapping="/static/**"/>
+    <mvc:resources location="WEB-INF/static/" mapping="/static/**"/>
 
     <!-- start 模板解析器  -->
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
@@ -44,5 +47,9 @@
         <property name="contentType" value="application/json"/>
     </bean>
     <!--    end 配置 json 解析器-->
+
+
+    <!--    <mvc:resources mapping="/webjars/**" location="classpath*:/META-INF/resources/webjars/springfox-swagger-ui"/>-->
+    <!--    -->
 
 </beans>

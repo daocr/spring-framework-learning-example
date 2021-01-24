@@ -12,6 +12,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.util.UrlPathHelper;
 
 import java.time.Duration;
 import java.util.List;
@@ -44,6 +45,14 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
+
+        /**
+         *  开启  @MatrixVariable 注解的识别
+         *  如果是 xml，请用 <mvc:annotation-driven enable-matrix-variables="true"/>
+         */
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setRemoveSemicolonContent(false);
+        configurer.setUrlPathHelper(urlPathHelper);
 
         log.info("配置  configurePathMatch");
 
@@ -163,6 +172,11 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/public", "classpath:/static/")
                 .setCacheControl(CacheControl.maxAge(Duration.ofDays(365)));
+
+
+        // 添加 swagger-ui 3.x 的静态文件处理，网上目前大多数是 2.x 的配置方法，需要注意配置
+        registry.addResourceHandler("/swagger-ui/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
     }
 
     /**

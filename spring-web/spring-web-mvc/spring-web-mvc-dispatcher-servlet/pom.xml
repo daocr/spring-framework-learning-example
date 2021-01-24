@@ -21,6 +21,7 @@
     <properties>
         <thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
         <servlet-api.version>5.0.0</servlet-api.version>
+        <swagger2.version>3.0.0</swagger2.version>
     </properties>
     <dependencies>
 
@@ -64,6 +65,24 @@
             <version>2.12.1</version>
         </dependency>
 
+        <!--  start      api 管理-->
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+
+        <!--  end      api 管理-->
 
         <dependency>
             <groupId>com.huilong</groupId>

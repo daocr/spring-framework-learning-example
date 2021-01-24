@@ -4,9 +4,8 @@ import com.huilong.model.vo.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -17,11 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.security.Principal;
 import java.time.ZoneId;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -41,6 +36,7 @@ public class ExceptionController {
      *
      * @return
      */
+    @GetMapping("/to-index")
     public String toIndex() {
         return "annotated/exception";
     }
@@ -51,7 +47,7 @@ public class ExceptionController {
      *
      * @return
      */
-    @RequestMapping("trigger-number-format-exception")
+    @GetMapping("trigger-number-format-exception")
     @ResponseBody
     public String triggerNumberFormatException(NumberFormatException e) {
         throw new NumberFormatException("触发 NumberFormatException 异常");
@@ -62,21 +58,19 @@ public class ExceptionController {
      * 捕获  NumberFormatException
      * <p>
      * 入参支持类型
-     * <pre>
-     *     1、捕捉到异常的类型                                        {@link NumberFormatException}
-     *     2、抛出异常的 controller method                           {@link HandlerMethod}
-     *     3、对 Servlet API 的封装，避免直接只是用Servlet API         {@link WebRequest}
-     *     4、对 Servlet API 的封装，避免直接只是用Servlet API         {@link NativeWebRequest}
-     *     5、ServletRequest   请求                                 {@link ServletRequest}
-     *     5、ServletResponse  响应                                 {@link ServletResponse}
-     *     6、会话信息 HttpSession                                  {@link HttpSession}
-     *     7、请求方式 例如 get，post                                {@link HttpMethod}
-     *     8、地区                                                  {@link Locale}
-     *     9、时区                                                  {@link ZoneId}
-     *     10、时区                                                 {@link ZoneId}
-     *     11、从定向参数信息                                        {@link RedirectAttributes}
-     * </pre>
      *
+     * @param numberFormatException 捕捉到异常的类型 {@link NumberFormatException}
+     * @param handlerMethod         抛出异常的 controller method {@link HandlerMethod}
+     * @param webRequest            对 Servlet API 的封装，避免直接只是用Servlet API  {@link WebRequest}
+     * @param nativeWebRequest      对 Servlet API 的封装，避免直接只是用Servlet API  {@link NativeWebRequest}
+     * @param servletRequest        ServletRequest   请求  {@link ServletRequest}
+     * @param servletResponse       ServletResponse  响应  {@link ServletResponse}
+     * @param httpSession           会话信息 HttpSession  {@link HttpSession}
+     * @param httpMethod            请求方式 例如 get，post {@link HttpMethod}
+     * @param locale                地区 {@link Locale}
+     * @param timeZone              时区 {@link ZoneId}
+     * @param zoneId                时区 {@link ZoneId}
+     * @param redirectAttributes    从定向参数信息 {@link RedirectAttributes}
      * @return
      */
     @ExceptionHandler(NumberFormatException.class)
@@ -94,6 +88,7 @@ public class ExceptionController {
                                    ZoneId zoneId,
                                    RedirectAttributes redirectAttributes) {
 
+        log.info("捕捉到的异常,params:" + "numberFormatException:" + numberFormatException + "," + "handlerMethod:" + handlerMethod + "," + "webRequest:" + webRequest + "," + "nativeWebRequest:" + nativeWebRequest + "," + "servletRequest:" + servletRequest + "," + "servletResponse:" + servletResponse + "," + "httpSession:" + httpSession + "," + "httpMethod:" + httpMethod + "," + "locale:" + locale + "," + "timeZone:" + timeZone + "," + "zoneId:" + zoneId + "," + "redirectAttributes:" + redirectAttributes);
 
         return R.failure("request method : " + httpMethod, "捕捉到 NumberFormatException");
     }
