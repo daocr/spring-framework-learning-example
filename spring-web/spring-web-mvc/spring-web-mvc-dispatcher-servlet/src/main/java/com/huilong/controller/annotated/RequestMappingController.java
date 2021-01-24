@@ -1,85 +1,95 @@
 package com.huilong.controller.annotated;
 
 import com.huilong.config.MyWebMvcConfigurer;
+import com.huilong.model.param.PersonParam;
+import com.huilong.model.vo.Person;
 import com.huilong.model.vo.R;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpMethod;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.util.UriComponentsBuilder;
-import springfox.documentation.annotations.ApiIgnore;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpSession;
-import java.time.ZoneId;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.io.File;
+import java.nio.file.Files;
 
 /**
  * 请求匹配相关
+ * <p>
+ * 入参支持的变量
+ * <pre>
+ * 1、   webRequest
+ * 2、   nativeWebRequest
+ * 3、   servletRequest
+ * 4、   servletResponse
+ * 5、   httpSession
+ * 6、   httpMethod
+ * 7、   locale
+ * 8、   timeZone
+ * 9、   zoneId
+ * 10、  uriComponentsBuilder
+ * </pre>
  */
 @Slf4j
 @RestController
 @RequestMapping("/springmvc/request-mapping")
 class RequestMappingController {
 
-
     /**
-     * 入参测试
+     * 获取 request Param 的变量
      *
-     * @param pathVariable
-     * @param requestParam
-     * @param encoding
-     * @param cookie
-     * @param webRequest
-     * @param nativeWebRequest
-     * @param servletRequest
-     * @param servletResponse
-     * @param httpSession
-     * @param httpMethod
-     * @param locale
-     * @param timeZone
-     * @param zoneId
-     * @param uriComponentsBuilder
+     * @param name
      * @return
      */
-    @GetMapping("/method-get/{pathQuery}")
-    public R methodGet(
-            @PathVariable(name = "pathQuery") String pathVariable,
-            @RequestParam(name = "requestParam", required = false) String requestParam,
-            @RequestHeader("Accept-Encoding") String encoding,
-            @ApiParam(type = "cookie") @CookieValue(value = "JSESSIONID", required = false) String cookie,
-            @ApiIgnore WebRequest webRequest,
-            @ApiIgnore NativeWebRequest nativeWebRequest,
-            @ApiIgnore ServletRequest servletRequest,
-            @ApiIgnore ServletResponse servletResponse,
-            @ApiIgnore HttpSession httpSession,
-            @ApiIgnore HttpMethod httpMethod,
-            @ApiIgnore Locale locale,
-            @ApiIgnore TimeZone timeZone,
-            @ApiIgnore ZoneId zoneId,
-            @ApiIgnore UriComponentsBuilder uriComponentsBuilder) {
+    @GetMapping("/method-get/requestParam")
+    @Operation(summary = "获取 requestParam 的信息")
+    public R<String> requestParam(@Parameter(description = "用户名称") @RequestParam(name = "name") String name) {
+        return R.success("request Param :" + name);
+    }
 
-        log.info("get 请求,params：" +
-                "\n@PathVariable pathVariable：" + pathVariable + "," +
-                "\n@RequestParam requestParam：" + requestParam + "," +
-                "\n@RequestHeader encoding：" + encoding + "," +
-                "\n@CookieValue cookie：" + cookie + "," +
-                "\nwebRequest：" + webRequest + "," +
-                "\nnativeWebRequest：" + nativeWebRequest + "," +
-                "\nservletRequest：" + servletRequest + "," +
-                "\nservletResponse：" + servletResponse + "," +
-                "\nhttpSession：" + httpSession + "," +
-                "\nhttpMethod：" + httpMethod + "," +
-                "\nlocale：" + locale + "," +
-                "\ntimeZone：" + timeZone + "," +
-                "\nzoneId：" + zoneId + "," +
-                "\nuriComponentsBuilder：" + uriComponentsBuilder);
+    /**
+     * 获取 url path 的变量
+     *
+     * @param version
+     * @return
+     */
+    @GetMapping(value = "/method-get/{version}/pathVariable", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @Operation(summary = "获取 url path 的信息")
+    public R<String> pathVariable(@Parameter(description = "设置 url path 变量", in = ParameterIn.PATH) @PathVariable(name = "version") String version) {
+        return R.success("pathVariable :" + version);
+    }
 
-        return R.success();
+
+    /**
+     * 获取 请求头 信息
+     *
+     * @param encodin
+     * @return
+     */
+    @GetMapping("/method-get/headerVariable")
+    @Operation(summary = "获取 请求头 信息")
+    public R<String> headerVariable(
+            @Parameter(in = ParameterIn.HEADER, description = "设置 请求头 信息") @RequestHeader(value = "Accept", defaultValue = "text/html,application/xhtml+xml,application/xml;") String encodin) {
+        return R.success("header Variable :" + encodin);
+    }
+
+
+    /**
+     * 获取 cookie 信息
+     *
+     * @param jsessionid
+     * @return
+     */
+    @GetMapping("/method-get/cookieVariable")
+    @Operation(summary = "获取 cookie 信息")
+    public R<String> cookieVariable(
+            @Parameter(in = ParameterIn.COOKIE) @CookieValue(value = "JSESSIONID", defaultValue = "3EC442C6C1DF8B591A1D479669A07703") String jsessionid) {
+        return R.success("cookie Variable   :" + jsessionid);
     }
 
 
@@ -93,12 +103,47 @@ class RequestMappingController {
      * @return
      */
     @GetMapping("/method-get/matrixVariable/{id}")
-    public R methodGetMatrixVariable(@MatrixVariable(name = "age", pathVar = "id") Integer age,
-                                     @PathVariable("id") Integer id) {
+    @Operation(summary = "获取 matrixVariable 类型变量")
+    public R<String> methodGetMatrixVariable(@Parameter(in = ParameterIn.PATH) @MatrixVariable(name = "age", pathVar = "id") Integer age,
+                                             @PathVariable("id") Integer id) {
 
-        log.info("接受 MatrixVariable 的变量,params:" + "age:" + age + "," + "id:" + id);
+        log.info("接收 MatrixVariable 的变量,params:" + "age:" + age + "," + "id:" + id);
 
-        return R.success();
+        return R.success("MatrixVariable ： " + age);
+    }
+
+    /**
+     * json 类型参数获取
+     *
+     * @param personParam
+     * @return
+     */
+    @PostMapping("/method-post")
+    @Operation(summary = "获取 post 方式提交的json 数据")
+    public R<Person> post(@RequestBody PersonParam personParam) {
+        Person person = new Person();
+        BeanUtils.copyProperties(personParam, person);
+        return R.success(person);
+    }
+
+    /**
+     * 文件上传
+     * <p>
+     * 1、添加 commons-fileupload 依赖到 pom.xml
+     * 2  配置 {@link CommonsMultipartResolver} bean 到 spring 容器
+     *
+     * @param file
+     * @return
+     */
+    @Operation(summary = "文件上传")
+    @PostMapping("/upload")
+    public R<String> upload(@RequestParam("file") MultipartFile file) {
+
+        String contentType = file.getContentType();
+        String name = file.getName();
+        long size = file.getSize();
+
+        return R.success("文件类型 ：" + contentType + "   文件名称：" + name + "  文件大小： " + size);
     }
 
 

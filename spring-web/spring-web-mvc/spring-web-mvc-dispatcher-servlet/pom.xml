@@ -84,6 +84,16 @@
 
         <!--  end      api 管理-->
 
+        <!--文件上传-->
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!--文件上传-->
+
+
         <dependency>
             <groupId>com.huilong</groupId>
             <artifactId>spring-core-logging-logback</artifactId>
