@@ -8,45 +8,6 @@
 
     <context:component-scan base-package="com.huilong"/>
 
+    <mvc:annotation-driven enable-matrix-variables="true"/>
 
-    <mvc:annotation-driven enable-matrix-variables="true"></mvc:annotation-driven>
-
-    <!--    <mvc:annotation-driven/>-->
-
-    <mvc:resources location="WEB-INF/static/" mapping="/static/**"/>
-
-    <!-- start 模板解析器  -->
-    <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/WEB-INF/templates/"/>
-        <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML5"/>
-        <property name="cacheable" value="false"/>
-        <property name="characterEncoding" value="UTF-8"/>
-    </bean>
-
-    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver"/>
-    </bean>
-
-    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine"/>
-        <property name="characterEncoding" value="UTF-8"/>
-    </bean>
-    <!-- end  模板解析器  -->
-
-    <!--    start 配置 json 解析器-->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-            </list>
-        </property>
-    </bean>
-
-    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-        <property name="contentType" value="application/json"/>
-    </bean>
-    <!--    end 配置 json 解析器-->
-
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>

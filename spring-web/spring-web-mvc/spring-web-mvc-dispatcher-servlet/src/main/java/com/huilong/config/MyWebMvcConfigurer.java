@@ -169,10 +169,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/resources/**")
-                .addResourceLocations("/public", "classpath:/static/")
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("WEB-INF/static/")
                 .setCacheControl(CacheControl.maxAge(Duration.ofDays(365)));
-
 
         // 添加 swagger-ui 3.x 的静态文件处理，网上目前大多数是 2.x 的配置方法，需要注意配置
         registry.addResourceHandler("/swagger-ui/**")
