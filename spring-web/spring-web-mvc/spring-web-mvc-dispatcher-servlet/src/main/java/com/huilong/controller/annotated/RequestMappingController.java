@@ -1,5 +1,6 @@
 package com.huilong.controller.annotated;
 
+import com.huilong.config.BeanConfig;
 import com.huilong.config.MyWebMvcConfigurer;
 import com.huilong.model.param.PersonParam;
 import com.huilong.model.vo.Person;
@@ -12,7 +13,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 /**
  * 请求匹配相关
@@ -114,7 +114,7 @@ class RequestMappingController {
      * @param personParam
      * @return
      */
-    @PostMapping("/method-post")
+    @PostMapping(value = "/method-post")
     @Operation(summary = "获取 post 方式提交的json 数据")
     public R<Person> post(@RequestBody PersonParam personParam) {
         Person person = new Person();
@@ -126,7 +126,7 @@ class RequestMappingController {
      * 文件上传
      * <p>
      * 1、添加 commons-fileupload 依赖到 pom.xml
-     * 2  配置 {@link CommonsMultipartResolver} bean 到 spring 容器
+     * 2  配置 {@link BeanConfig.ConfigFileUpload#getCommonsMultipartResolver()} bean 到 spring 容器
      *
      * @param file
      * @return

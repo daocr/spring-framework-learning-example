@@ -1,6 +1,7 @@
 package com.huilong.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 import java.util.ArrayList;
 
@@ -28,11 +30,12 @@ public class BeanConfig {
     public static class ConfigThymeleafViewResolver {
 
         @Bean
-        public SpringResourceTemplateResolver getSpringResourceTemplateResolver() {
+        public SpringResourceTemplateResolver getSpringResourceTemplateResolver(@Autowired ApplicationContext applicationContext) {
             SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
+            springResourceTemplateResolver.setApplicationContext(applicationContext);
             springResourceTemplateResolver.setPrefix("/WEB-INF/templates/");
             springResourceTemplateResolver.setSuffix(".html");
-            springResourceTemplateResolver.setTemplateMode("HTML5");
+            springResourceTemplateResolver.setTemplateMode(TemplateMode.HTML);
             springResourceTemplateResolver.setCacheable(false);
             springResourceTemplateResolver.setCharacterEncoding("UTF-8");
             return springResourceTemplateResolver;
@@ -44,6 +47,7 @@ public class BeanConfig {
 
             SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
             springTemplateEngine.setTemplateResolver(springResourceTemplateResolver);
+            springTemplateEngine.setEnableSpringELCompiler(true);
             return springTemplateEngine;
         }
 

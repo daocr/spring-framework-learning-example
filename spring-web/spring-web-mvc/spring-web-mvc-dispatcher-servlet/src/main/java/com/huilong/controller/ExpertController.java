@@ -32,6 +32,6 @@ public class ExpertController {
         HttpServletRequest request = servletRequestAttributes.getRequest();
         WebApplicationContext webApplicationContext = (WebApplicationContext) request.getAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE);
         log.info("request url: {}", request.getRequestURI());
-        return "index";
+        return "cors";
     }
 }
