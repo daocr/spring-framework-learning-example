@@ -97,6 +97,8 @@
         <!--文件上传-->
 
 
+        <!--        参数验证-->
+
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>jakarta.el</artifactId>
@@ -107,9 +109,11 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.1.6.Final</version>
+            <version>${validator.version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!--        参数验证-->
 
         <dependency>
             <groupId>com.huilong</groupId>
