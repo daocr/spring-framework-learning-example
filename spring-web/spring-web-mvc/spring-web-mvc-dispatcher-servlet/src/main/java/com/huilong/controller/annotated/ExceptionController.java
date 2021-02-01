@@ -6,11 +6,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.HandlerMethod;
@@ -21,6 +19,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -31,7 +30,7 @@ import java.util.TimeZone;
  * @date 2021/1/21
  */
 @Slf4j
-@Controller
+@RestControllerAdvice
 @Api(tags = "异常处理")
 @RequestMapping("/springmvc/exception")
 public class ExceptionController {
@@ -97,6 +96,17 @@ public class ExceptionController {
         log.info("捕捉到的异常,params:" + "numberFormatException:" + numberFormatException + "," + "handlerMethod:" + handlerMethod + "," + "webRequest:" + webRequest + "," + "nativeWebRequest:" + nativeWebRequest + "," + "servletRequest:" + servletRequest + "," + "servletResponse:" + servletResponse + "," + "httpSession:" + httpSession + "," + "httpMethod:" + httpMethod + "," + "locale:" + locale + "," + "timeZone:" + timeZone + "," + "zoneId:" + zoneId + "," + "redirectAttributes:" + redirectAttributes);
 
         return R.failure("request method : " + httpMethod, "捕捉到 NumberFormatException");
+    }
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public R<Object> MethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
+
+        List<ObjectError> allErrors = methodArgumentNotValidException.getAllErrors();
+
+
+        return R.failure(allErrors, "参数错误");
     }
 
 

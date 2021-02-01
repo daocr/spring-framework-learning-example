@@ -11,8 +11,11 @@ import lombok.Data;
 @Data
 @ApiModel(description = "人员")
 public class Person {
-    @ApiModelProperty(value = "人员 id")
+    @ApiModelProperty(value = "编号")
     private Integer id;
-    @ApiModelProperty(value = "人员名称")
+    @ApiModelProperty(value = "名称")
     private String name;
+    @ApiModelProperty(value = "年龄")
+    private Integer age;
+
 }

@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
@@ -39,7 +41,6 @@ public class BeanConfig {
             springResourceTemplateResolver.setCacheable(false);
             springResourceTemplateResolver.setCharacterEncoding("UTF-8");
             return springResourceTemplateResolver;
-
         }
 
         @Bean
@@ -97,4 +98,6 @@ public class BeanConfig {
             return new CommonsMultipartResolver();
         }
     }
+
+
 }
