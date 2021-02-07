@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.io.Serializable;
+
 /**
  * 返回结果集
  *
@@ -12,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @ApiModel(description = "基础返回类")
 //@Schema(name = "入参", description = "入参111")
-public class R<T> {
+public class R<T> implements Serializable {
 
     //    @ApiModelProperty(value = "具体返回数据")
     @Schema(description = "具体返回数据")

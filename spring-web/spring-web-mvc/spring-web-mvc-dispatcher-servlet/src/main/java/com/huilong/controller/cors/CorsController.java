@@ -5,10 +5,7 @@ import com.huilong.model.vo.Person;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 /**
@@ -30,9 +27,11 @@ public class CorsController {
      *
      * @return
      */
-    @CrossOrigin
+    @CrossOrigin(originPatterns = "*")
     @GetMapping("/cors-all")
-    public Person corsAll() {
+    public Person corsAll(@RequestHeader(name = "Referer",required = false) String referer) {
+
+        log.info("referer: {}", referer);
         Person person = new Person();
         person.setId(1);
         person.setName("李四");
@@ -46,7 +45,9 @@ public class CorsController {
      */
     @CrossOrigin(origins = {"https://domain2.com"})
     @GetMapping("/allow-domain2")
-    public Person allowDomain2() {
+    public Person allowDomain2(@RequestHeader(name = "Referer",required = false) String referer) {
+
+        log.info("referer: {}", referer);
 
         Person person = new Person();
         person.setId(1);

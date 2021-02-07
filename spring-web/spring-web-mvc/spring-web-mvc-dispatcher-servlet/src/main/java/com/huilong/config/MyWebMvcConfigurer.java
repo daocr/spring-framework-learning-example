@@ -207,6 +207,15 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
 
+
+
+//        registry.addMapping("/**")
+//                .allowedOriginPatterns("*")
+////                .allowedOrigins("*")
+//                .allowedMethods("*")
+//                .allowedHeaders("*");
+//
+//
 //        registry.addMapping("/api/**")
 //                .allowedOrigins("https://domain2.com")
 //                .allowedMethods("PUT", "DELETE")

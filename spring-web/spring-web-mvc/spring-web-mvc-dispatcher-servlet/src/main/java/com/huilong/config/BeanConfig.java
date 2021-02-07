@@ -1,13 +1,15 @@
 package com.huilong.config;
 
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
@@ -16,6 +18,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import javax.validation.Validation;
 import java.util.ArrayList;
 
 /**
@@ -99,5 +102,30 @@ public class BeanConfig {
         }
     }
 
+
+    /**
+     * 数据校验配置
+     */
+    @Configuration
+    public static class Validator {
+
+        /**
+         * aop 拦截  {@link Validated} 注解
+         *
+         * @return
+         */
+        @Bean
+        @Primary
+        public MethodValidationPostProcessor methodValidationPostProcessor() {
+            MethodValidationPostProcessor postProcessor = new MethodValidationPostProcessor();
+            postProcessor.setBeforeExistingAdvisors(true);
+            postProcessor.setProxyTargetClass(true);
+
+            javax.validation.Validator validator = Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory().getValidator();
+
+            postProcessor.setValidator(validator);
+            return postProcessor;
+        }
+    }
 
 }

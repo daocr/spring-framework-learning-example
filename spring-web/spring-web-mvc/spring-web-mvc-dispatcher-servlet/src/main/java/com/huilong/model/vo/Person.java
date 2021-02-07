@@ -4,13 +4,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author daocr
  * @date 2021/1/10
  */
 @Data
 @ApiModel(description = "人员")
-public class Person {
+public class Person implements Serializable {
+
     @ApiModelProperty(value = "编号")
     private Integer id;
     @ApiModelProperty(value = "名称")

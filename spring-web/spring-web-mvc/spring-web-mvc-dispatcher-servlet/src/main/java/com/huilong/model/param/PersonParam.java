@@ -11,6 +11,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.io.Serializable;
 
 
 /**
@@ -19,7 +20,7 @@ import javax.validation.constraints.Null;
  */
 @Data
 @ApiModel(description = "人员")
-public class PersonParam {
+public class PersonParam implements Serializable {
 
 
     @ApiModelProperty(value = "人员 id")

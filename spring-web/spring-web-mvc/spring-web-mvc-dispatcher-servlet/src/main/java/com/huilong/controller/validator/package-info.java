@@ -1,15 +1,8 @@
+/**
+ * @author daocr
+ * @date 2021/2/2
+ */
 package com.huilong.controller.validator;
-
-import com.huilong.controller.validator.group.Insert;
-import com.huilong.controller.validator.group.Update;
-import com.huilong.model.param.PersonParam;
-import com.huilong.model.vo.Person;
-import com.huilong.model.vo.R;
-import io.swagger.annotations.Api;
-import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
 
 /**
  * 数据验证
@@ -69,50 +62,4 @@ import org.springframework.web.bind.annotation.*;
  *         {@link org.hibernate.validator.constraints.ScriptAssert}
  *
  * </pre>
- *
- * @author daocr
- * @date 2021/1/20
  */
-
-@RestController
-@RequestMapping("/springmvc/validator")
-@Api(tags = "数据验证")
-public class ValidatorController {
-
-
-    /**
-     * 验证 group  Insert.class 的参数
-     *
-     * @param personParam
-     * @return
-     */
-    @Operation(summary = "验证 group  Insert.class 的参数")
-    @PostMapping("/insert")
-    @ResponseBody
-    public R<Person> insert(@Validated(value = Insert.class) @RequestBody PersonParam personParam) {
-
-        Person person = new Person();
-        person.setAge(personParam.getAge());
-
-        return R.success(person);
-    }
-
-
-    /**
-     * 验证 Update  Insert.class 的参数
-     *
-     * @param personParam
-     * @return
-     */
-    @Operation(summary = "验证 Update  Insert.class 的参数")
-    @PostMapping("/update")
-    @ResponseBody
-    public R<Person> update(@Validated(value = Update.class) @RequestBody PersonParam personParam) {
-
-        Person person = new Person();
-        person.setAge(personParam.getAge());
-
-        return R.success(person);
-    }
-
-}
