@@ -115,7 +115,7 @@ class RequestMappingController {
      * @return
      */
     @GetMapping("/method-get/headerVariable")
-    @Operation(summary = "获取 请求头 信息")
+    @Operation(summary = "获取 请求头 信息", description = "获取 Request Headers 的信息 ")
     public R<String> headerVariable(
             @Parameter(in = ParameterIn.HEADER, description = "设置 请求头 信息") @RequestHeader(value = "User-Agent", defaultValue = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36") String encodin) {
         return R.success("header Variable :" + encodin);
