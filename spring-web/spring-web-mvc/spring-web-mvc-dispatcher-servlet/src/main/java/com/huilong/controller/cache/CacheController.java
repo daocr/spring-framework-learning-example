@@ -2,6 +2,7 @@ package com.huilong.controller.cache;
 
 import com.huilong.config.MyWebMvcConfigurer;
 import com.huilong.model.vo.Person;
+import com.huilong.utils.MockUtils;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -47,10 +48,7 @@ public class CacheController {
     @Operation(summary = "不使用本地缓存。需要使用缓存协商使用缓存", description = "不使用本地缓存。需要使用缓存协商，先与服务器确认返回的响应是否被更改，如果之前的响应中存在ETag，那么请求的时候会与服务端验证，如果资源未被更改，则可以避免重新下载。")
     public ResponseEntity<Person> noCache() {
 
-        Person person = new Person();
-        person.setId(1);
-        person.setName("张三");
-        person.setAge(20);
+        Person person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
@@ -74,10 +72,7 @@ public class CacheController {
     @Operation(summary = "禁止浏览器缓存", description = "直接禁止游览器缓存数据，每次用户请求该资源，都会向服务器发送一个请求，每次都会下载完整的资源。")
     public ResponseEntity<Person> noStore() {
 
-        Person person = new Person();
-        person.setId(1);
-        person.setName("张三");
-        person.setAge(20);
+        Person person = MockUtils.mockStatic();
 
         ResponseEntity<Person> body = ResponseEntity.ok()
                 .cacheControl(CacheControl.noStore())
@@ -99,16 +94,12 @@ public class CacheController {
             "\n2、表示该响应可以再浏览器或者任何中继的Web代理中缓存，public是默认值，即Cache-Control:max-age=60等同于Cache-Control:public, max-age=60。\n")
     public ResponseEntity<Person> publicCache() {
 
-        Person person = new Person();
-        person.setId(1);
-        person.setName("张三");
-        person.setAge(20);
-
+        Person person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
         ResponseEntity<Person> body = ResponseEntity.ok()
-                .cacheControl(CacheControl.empty().cachePublic())
+                .cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
                 .eTag(md5DigestAsHex)
                 .body(person);
 
@@ -126,16 +117,13 @@ public class CacheController {
             "\n 2、默认值：Cache-Control:public, max-age=60。")
     public ResponseEntity<Person> privateCache() {
 
-        Person person = new Person();
-        person.setId(1);
-        person.setName("张三");
-        person.setAge(20);
 
+        Person person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
         ResponseEntity<Person> body = ResponseEntity.ok()
-                .cacheControl(CacheControl.empty().cachePrivate())
+                .cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePrivate())
                 .eTag(md5DigestAsHex)
                 .body(person);
 
@@ -152,11 +140,8 @@ public class CacheController {
     @Operation(summary = " 缓存 30 分钟")
     public ResponseEntity<Person> cache3Minutes() {
 
-        Person person = new Person();
-        person.setId(1);
-        person.setName("张三");
-        person.setAge(20);
 
+        Person person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
@@ -185,10 +170,7 @@ public class CacheController {
     @GetMapping("/cache-etag")
     public ResponseEntity<Person> etag(@ApiIgnore WebRequest webRequest) {
 
-        Person person = new Person();
-        person.setId(1);
-        person.setName("张三");
-        person.setAge(20);
+        Person person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
