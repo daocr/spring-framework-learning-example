@@ -31,9 +31,9 @@ import java.util.List;
  * @author daocr
  * @date 2021/1/10
  */
-@Configuration
-//@EnableWebMvc
 @Slf4j
+@EnableWebMvc
+@Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
 

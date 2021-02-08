@@ -1,7 +1,9 @@
 package com.huilong.utils;
 
+import com.github.javafaker.Faker;
 import com.huilong.model.vo.Staff;
 
+import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -10,6 +12,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * @date 2021/2/7
  */
 public class MockUtils {
+
+    public static Faker fakerWithCN = new Faker(Locale.CHINA);
 
     private MockUtils() {
 
@@ -20,7 +24,7 @@ public class MockUtils {
 
         ThreadLocalRandom current = ThreadLocalRandom.current();
         person.setId(current.nextInt());
-        person.setName(UUID.randomUUID().toString());
+        person.setName(fakerWithCN.name().fullName());
         person.setAge(current.nextInt());
 
         return person;

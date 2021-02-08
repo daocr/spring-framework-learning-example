@@ -122,6 +122,16 @@
             <version>3.11</version>
         </dependency>
 
+
+        <!--        模拟数据-->
+        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
         <dependency>
             <groupId>com.huilong</groupId>
             <artifactId>spring-core-logging-logback</artifactId>

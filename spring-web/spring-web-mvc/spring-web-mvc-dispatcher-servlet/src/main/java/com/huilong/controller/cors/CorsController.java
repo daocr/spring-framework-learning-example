@@ -2,6 +2,7 @@ package com.huilong.controller.cors;
 
 import com.huilong.config.MyWebMvcConfigurer;
 import com.huilong.model.vo.Staff;
+import com.huilong.utils.MockUtils;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +29,11 @@ public class CorsController {
      */
     @CrossOrigin(originPatterns = "*")
     @GetMapping("/cors-all")
-    public Staff corsAll(@RequestHeader(name = "Referer",required = false) String referer) {
+    public Staff corsAll(@RequestHeader(name = "Referer", required = false) String referer) {
 
         log.info("referer: {}", referer);
-        Staff person = new Staff();
-        person.setId(1);
-        person.setName("李四");
-        return person;
+        Staff staff = MockUtils.mockDynamic();
+        return staff;
     }
 
     /**
@@ -44,14 +43,11 @@ public class CorsController {
      */
     @CrossOrigin(origins = {"https://domain2.com"})
     @GetMapping("/allow-domain2")
-    public Staff allowDomain2(@RequestHeader(name = "Referer",required = false) String referer) {
+    public Staff allowDomain2(@RequestHeader(name = "Referer", required = false) String referer) {
 
         log.info("referer: {}", referer);
-
-        Staff person = new Staff();
-        person.setId(1);
-        person.setName("李四");
-        return person;
+        Staff staff = MockUtils.mockDynamic();
+        return staff;
 
     }
 

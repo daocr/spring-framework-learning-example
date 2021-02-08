@@ -1,6 +1,7 @@
 package com.huilong.controller.annotated;
 
 import com.huilong.model.vo.Staff;
+import com.huilong.utils.MockUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,11 +33,10 @@ public class ModelController {
     @Operation(description = "ModelMap 扭转数据")
     public String populateModel(@RequestParam Integer id, @RequestParam String name, ModelMap modelMap) {
 
-        Staff person = new Staff();
-        person.setId(id);
-        person.setName(name);
+        Staff staff = MockUtils.mockDynamic();
+        staff.setName(name);
 
-        modelMap.addAttribute("person", person);
+        modelMap.addAttribute("person", staff);
         modelMap.addAttribute("type", "ModelMap 扭转数据");
 //        return modelAndView;
         return "annotated/model";
