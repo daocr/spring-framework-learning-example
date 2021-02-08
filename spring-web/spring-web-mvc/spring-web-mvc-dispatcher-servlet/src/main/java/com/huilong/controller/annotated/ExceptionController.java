@@ -1,6 +1,6 @@
 package com.huilong.controller.annotated;
 
-import com.huilong.model.vo.Person;
+import com.huilong.model.vo.Staff;
 import com.huilong.model.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -54,7 +54,7 @@ public class ExceptionController {
     @ApiOperation(value = "触发 NumberFormatException 异常")
     @GetMapping("trigger-number-format-exception")
     @ResponseBody
-    public R<Person> triggerNumberFormatException(@ApiIgnore NumberFormatException e) {
+    public R<Staff> triggerNumberFormatException(@ApiIgnore NumberFormatException e) {
         throw new NumberFormatException("触发 NumberFormatException 异常");
     }
 

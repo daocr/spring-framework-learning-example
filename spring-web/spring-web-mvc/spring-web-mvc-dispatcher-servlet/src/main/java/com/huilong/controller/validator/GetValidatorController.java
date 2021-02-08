@@ -1,7 +1,7 @@
 package com.huilong.controller.validator;
 
 import com.huilong.config.BeanConfig;
-import com.huilong.model.vo.Person;
+import com.huilong.model.vo.Staff;
 import com.huilong.model.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,8 +33,8 @@ public class GetValidatorController {
     @Operation(summary = "获取数据 ", description = "通过 aop 拦截实现")
     @GetMapping("/get")
     @ResponseBody
-    public R<Person> get(@Validated @Positive @RequestParam Integer id) {
-        Person person = new Person();
+    public R<Staff> get(@Validated @Positive @RequestParam Integer id) {
+        Staff person = new Staff();
         person.setId(id);
         return R.success(person);
     }

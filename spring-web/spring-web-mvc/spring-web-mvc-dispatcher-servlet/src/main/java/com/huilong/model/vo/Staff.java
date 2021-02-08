@@ -11,8 +11,8 @@ import java.io.Serializable;
  * @date 2021/1/10
  */
 @Data
-@ApiModel(description = "人员")
-public class Person implements Serializable {
+@ApiModel(description = "员工")
+public class Staff implements Serializable {
 
     @ApiModelProperty(value = "编号")
     private Integer id;

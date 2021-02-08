@@ -1,10 +1,9 @@
 package com.huilong.controller.cors;
 
 import com.huilong.config.MyWebMvcConfigurer;
-import com.huilong.model.vo.Person;
+import com.huilong.model.vo.Staff;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
@@ -29,10 +28,10 @@ public class CorsController {
      */
     @CrossOrigin(originPatterns = "*")
     @GetMapping("/cors-all")
-    public Person corsAll(@RequestHeader(name = "Referer",required = false) String referer) {
+    public Staff corsAll(@RequestHeader(name = "Referer",required = false) String referer) {
 
         log.info("referer: {}", referer);
-        Person person = new Person();
+        Staff person = new Staff();
         person.setId(1);
         person.setName("李四");
         return person;
@@ -45,11 +44,11 @@ public class CorsController {
      */
     @CrossOrigin(origins = {"https://domain2.com"})
     @GetMapping("/allow-domain2")
-    public Person allowDomain2(@RequestHeader(name = "Referer",required = false) String referer) {
+    public Staff allowDomain2(@RequestHeader(name = "Referer",required = false) String referer) {
 
         log.info("referer: {}", referer);
 
-        Person person = new Person();
+        Staff person = new Staff();
         person.setId(1);
         person.setName("李四");
         return person;

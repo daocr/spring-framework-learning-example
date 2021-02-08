@@ -2,8 +2,8 @@ package com.huilong.controller.annotated;
 
 import com.huilong.config.BeanConfig;
 import com.huilong.config.MyWebMvcConfigurer;
-import com.huilong.model.param.PersonParam;
-import com.huilong.model.vo.Person;
+import com.huilong.model.param.StaffParam;
+import com.huilong.model.vo.Staff;
 import com.huilong.model.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -165,8 +165,8 @@ class RequestMappingController {
      */
     @PostMapping(value = "/method-post")
     @Operation(summary = "获取 post 方式提交的json 数据")
-    public R<Person> post(@RequestBody PersonParam personParam) {
-        Person person = new Person();
+    public R<Staff> post(@RequestBody StaffParam personParam) {
+        Staff person = new Staff();
         BeanUtils.copyProperties(personParam, person);
         return R.success(person);
     }

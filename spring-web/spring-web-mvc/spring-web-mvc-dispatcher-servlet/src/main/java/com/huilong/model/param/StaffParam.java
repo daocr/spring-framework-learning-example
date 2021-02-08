@@ -19,16 +19,16 @@ import java.io.Serializable;
  * @date 2021/1/10
  */
 @Data
-@ApiModel(description = "人员")
-public class PersonParam implements Serializable {
+@ApiModel(description = "员工")
+public class StaffParam implements Serializable {
 
 
-    @ApiModelProperty(value = "人员 id")
+    @ApiModelProperty(value = "员工 id")
     @NotNull(groups = Update.class)
     @Null(groups = Insert.class)
     private Integer id;
 
-    @ApiModelProperty(value = "人员名称")
+    @ApiModelProperty(value = "员工名称")
     @Length(min = 2, max = 5, groups = Insert.class)
     private String name;
 

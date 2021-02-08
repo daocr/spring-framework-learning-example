@@ -2,16 +2,14 @@ package com.huilong.controller.validator;
 
 import com.huilong.controller.validator.group.Insert;
 import com.huilong.controller.validator.group.Update;
-import com.huilong.model.param.PersonParam;
-import com.huilong.model.vo.Person;
+import com.huilong.model.param.StaffParam;
+import com.huilong.model.vo.Staff;
 import com.huilong.model.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
-
-import java.util.LinkedList;
 
 
 /**
@@ -42,8 +40,8 @@ public class PostValidatorController {
     @Operation(summary = "验证 group  Insert.class 的参数")
     @PostMapping("/insert")
     @ResponseBody
-    public R<Person> insert(@Validated(value = Insert.class) @RequestBody PersonParam personParam) {
-        Person person = new Person();
+    public R<Staff> insert(@Validated(value = Insert.class) @RequestBody StaffParam personParam) {
+        Staff person = new Staff();
         person.setAge(personParam.getAge());
 
         return R.success(person);
@@ -59,9 +57,9 @@ public class PostValidatorController {
     @Operation(summary = "验证 Update  Insert.class 的参数")
     @PostMapping("/update")
     @ResponseBody
-    public R<Person> update(@Validated(value = Update.class) @RequestBody PersonParam personParam) {
+    public R<Staff> update(@Validated(value = Update.class) @RequestBody StaffParam personParam) {
 
-        Person person = new Person();
+        Staff person = new Staff();
         person.setAge(personParam.getAge());
 
         return R.success(person);

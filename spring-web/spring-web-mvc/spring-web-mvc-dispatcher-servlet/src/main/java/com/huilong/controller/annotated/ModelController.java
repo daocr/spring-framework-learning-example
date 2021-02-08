@@ -1,6 +1,6 @@
 package com.huilong.controller.annotated;
 
-import com.huilong.model.vo.Person;
+import com.huilong.model.vo.Staff;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,7 +32,7 @@ public class ModelController {
     @Operation(description = "ModelMap 扭转数据")
     public String populateModel(@RequestParam Integer id, @RequestParam String name, ModelMap modelMap) {
 
-        Person person = new Person();
+        Staff person = new Staff();
         person.setId(id);
         person.setName(name);
 
@@ -54,7 +54,7 @@ public class ModelController {
     @Operation(description = "ModelAndView 扭转数据")
     public ModelAndView populateModel(@RequestParam Integer id, @RequestParam String name) {
 
-        Person person = new Person();
+        Staff person = new Staff();
         person.setId(id);
         person.setName(name);
 

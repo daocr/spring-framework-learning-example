@@ -174,6 +174,9 @@ public class BeanConfig {
          * 存储区域设置信息 SessionLocaleResolver类通过一个预定义会话名将区域化信息存储在会话中 从session判断用户语言defaultLocale
          * <p>
          * {@link org.springframework.web.servlet.i18n.CookieLocaleResolver} 基于 cookie
+         * {@link org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver}  基于 header
+         *
+         *
          * {@link SessionLocaleResolver} 基于会话
          *
          * @return

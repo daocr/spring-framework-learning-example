@@ -1,7 +1,7 @@
 package com.huilong.controller.cache;
 
 import com.huilong.config.MyWebMvcConfigurer;
-import com.huilong.model.vo.Person;
+import com.huilong.model.vo.Staff;
 import com.huilong.utils.MockUtils;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,13 +45,13 @@ public class CacheController {
      */
     @GetMapping("/no-cache")
     @Operation(summary = "不使用本地缓存。需要使用缓存协商使用缓存", description = "不使用本地缓存。需要使用缓存协商，先与服务器确认返回的响应是否被更改，如果之前的响应中存在ETag，那么请求的时候会与服务端验证，如果资源未被更改，则可以避免重新下载。")
-    public ResponseEntity<Person> noCache() {
+    public ResponseEntity<Staff> noCache() {
 
-        Person person = MockUtils.mockStatic();
+        Staff person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
-        ResponseEntity<Person> body = ResponseEntity.ok()
+        ResponseEntity<Staff> body = ResponseEntity.ok()
                 .cacheControl(CacheControl.noCache())
                 .eTag(md5DigestAsHex)
                 .body(person);
@@ -69,11 +69,11 @@ public class CacheController {
      */
     @GetMapping("/no-store")
     @Operation(summary = "禁止浏览器缓存", description = "直接禁止游览器缓存数据，每次用户请求该资源，都会向服务器发送一个请求，每次都会下载完整的资源。")
-    public ResponseEntity<Person> noStore() {
+    public ResponseEntity<Staff> noStore() {
 
-        Person person = MockUtils.mockStatic();
+        Staff person = MockUtils.mockStatic();
 
-        ResponseEntity<Person> body = ResponseEntity.ok()
+        ResponseEntity<Staff> body = ResponseEntity.ok()
                 .cacheControl(CacheControl.noStore())
                 .body(person);
 
@@ -91,13 +91,13 @@ public class CacheController {
     @GetMapping("/cache-public")
     @Operation(summary = "禁止所有类型缓存", description = "1、直接禁止游览器缓存数据，每次用户请求该资源，都会向服务器发送一个请求，每次都会下载完整的资源。" +
             "\n2、表示该响应可以再浏览器或者任何中继的Web代理中缓存，public是默认值，即Cache-Control:max-age=60等同于Cache-Control:public, max-age=60。\n")
-    public ResponseEntity<Person> publicCache() {
+    public ResponseEntity<Staff> publicCache() {
 
-        Person person = MockUtils.mockStatic();
+        Staff person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
-        ResponseEntity<Person> body = ResponseEntity.ok()
+        ResponseEntity<Staff> body = ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
                 .eTag(md5DigestAsHex)
                 .body(person);
@@ -114,14 +114,14 @@ public class CacheController {
     @GetMapping("/cache-private")
     @Operation(summary = "不允许CDN等中继服务器对其缓存", description = "1、只可被终端用户的浏览器缓存，不允许CDN等中继服务器对其缓存。" +
             "\n 2、默认值：Cache-Control:public, max-age=60。")
-    public ResponseEntity<Person> privateCache() {
+    public ResponseEntity<Staff> privateCache() {
 
 
-        Person person = MockUtils.mockStatic();
+        Staff person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
-        ResponseEntity<Person> body = ResponseEntity.ok()
+        ResponseEntity<Staff> body = ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePrivate())
                 .eTag(md5DigestAsHex)
                 .body(person);
@@ -137,14 +137,14 @@ public class CacheController {
      */
     @GetMapping("/cache-30-minutes")
     @Operation(summary = " 缓存 30 分钟")
-    public ResponseEntity<Person> cache3Minutes() {
+    public ResponseEntity<Staff> cache3Minutes() {
 
 
-        Person person = MockUtils.mockStatic();
+        Staff person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
-        ResponseEntity<Person> body = ResponseEntity.ok()
+        ResponseEntity<Staff> body = ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES))
                 .eTag(md5DigestAsHex)
                 .body(person);
@@ -167,9 +167,9 @@ public class CacheController {
      */
     @Operation(summary = "etag 缓存", description = "这两个值是由服务器生成的每个资源的唯一标识符，只有资源变化的时候这个值就会改变，与last-Modified区别是，当服务器返回304 Not-Modified的时候由于Etag重新生成过，response还是会把Etag返回，即使Etag和之前的相比没有变化。")
     @GetMapping("/cache-etag")
-    public ResponseEntity<Person> etag(@ApiIgnore WebRequest webRequest) {
+    public ResponseEntity<Staff> etag(@ApiIgnore WebRequest webRequest) {
 
-        Person person = MockUtils.mockStatic();
+        Staff person = MockUtils.mockStatic();
 
         String md5DigestAsHex = DigestUtils.md5DigestAsHex(SerializationUtils.serialize(person));
 
@@ -178,7 +178,7 @@ public class CacheController {
             return null;
         }
 
-        ResponseEntity<Person> body = ResponseEntity.ok()
+        ResponseEntity<Staff> body = ResponseEntity.ok()
                 .eTag(md5DigestAsHex)
                 .body(person);
 

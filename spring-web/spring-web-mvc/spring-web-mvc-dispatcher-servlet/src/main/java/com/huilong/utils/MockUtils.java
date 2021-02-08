@@ -1,6 +1,6 @@
 package com.huilong.utils;
 
-import com.huilong.model.vo.Person;
+import com.huilong.model.vo.Staff;
 
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,8 +15,8 @@ public class MockUtils {
 
     }
 
-    public static Person mockDynamic() {
-        Person person = new Person();
+    public static Staff mockDynamic() {
+        Staff person = new Staff();
 
         ThreadLocalRandom current = ThreadLocalRandom.current();
         person.setId(current.nextInt());
@@ -26,9 +26,9 @@ public class MockUtils {
         return person;
     }
 
-    public static Person mockStatic() {
+    public static Staff mockStatic() {
 
-        Person person = new Person();
+        Staff person = new Staff();
         person.setId(1);
         person.setName("张三");
         person.setAge(20);
