@@ -180,8 +180,6 @@ public class BeanConfig {
          */
         @Bean(name = "localeResolver")
         public LocaleResolver getLocaleResolver() {
-
-            log.info("getSessionLocaleResolver");
             SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
             sessionLocaleResolver.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
             return sessionLocaleResolver;
