@@ -1,16 +1,24 @@
 package com.huilong.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -20,12 +28,13 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 import javax.validation.Validation;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * @author daocr
  * @date 2021/1/25
  */
-
+@Slf4j
 public class BeanConfig {
 
     /**
@@ -126,6 +135,59 @@ public class BeanConfig {
             postProcessor.setValidator(validator);
             return postProcessor;
         }
+    }
+
+
+    /**
+     * 国际化配置
+     * <p>
+     * {@link LocaleChangeInterceptor} 基于请求参数
+     * <p>
+     * {@link MyWebMvcConfigurer#addInterceptors(org.springframework.web.servlet.config.annotation.InterceptorRegistry)}
+     */
+    @Configuration
+    public static class I18n {
+
+
+        /**
+         * 配置 国际化文件
+         * <p>
+         * bean name 必须要是  messageSource 原因： {@link AbstractApplicationContext#initMessageSource()}
+         *
+         * @return
+         */
+        @Bean(name = AbstractApplicationContext.MESSAGE_SOURCE_BEAN_NAME)
+        public ReloadableResourceBundleMessageSource getReloadableResourceBundleMessageSource() {
+
+            ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+            messageSource.setDefaultEncoding("utf-8");
+            messageSource.setUseCodeAsDefaultMessage(true);
+            messageSource.setBasenames("classpath:i18n/message");
+
+            return messageSource;
+        }
+
+
+        /**
+         * 注意 bean 的名称替不能换成其他名字，必须叫 localeResolver
+         * <p>
+         * 存储区域设置信息 SessionLocaleResolver类通过一个预定义会话名将区域化信息存储在会话中 从session判断用户语言defaultLocale
+         * <p>
+         * {@link org.springframework.web.servlet.i18n.CookieLocaleResolver} 基于 cookie
+         * {@link SessionLocaleResolver} 基于会话
+         *
+         * @return
+         */
+        @Bean(name = "localeResolver")
+        public LocaleResolver getLocaleResolver() {
+
+            log.info("getSessionLocaleResolver");
+            SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+            sessionLocaleResolver.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+            return sessionLocaleResolver;
+        }
+
+
     }
 
 }

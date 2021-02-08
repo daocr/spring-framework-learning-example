@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @Slf4j
 @RestController
 @Api(tags = "跨域 配置 学习")
-@RequestMapping("/cors")
+@RequestMapping("/springmvc/cors")
 public class CorsController {
 
     /**

@@ -52,8 +52,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHan
  *                  4、{@link DispatcherServlet#doDispatch(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)}
  *                             通过url 匹配 controller
  *                         4.1 {@link DispatcherServlet#getHandler(javax.servlet.http.HttpServletRequest)}
- *                             处理拦截器（HandlerInterceptor）、跨域配置
+ *                             拦截器（HandlerInterceptor）、跨域配置
  *                             4.1.1 {@link AbstractHandlerMapping#getHandler(javax.servlet.http.HttpServletRequest)}
+ *                                          匹配拦截器
+ *                                          4.1.1.1 {@link AbstractHandlerMapping#getHandlerExecutionChain(java.lang.Object, javax.servlet.http.HttpServletRequest)}
  *                                 通过反射，调用 controller 的方法
  *                         4.2 {@link AbstractHandlerMethodAdapter#handle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)}
  *                                           4.2.1{@link RequestMappingHandlerAdapter#handleInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.web.method.HandlerMethod)}

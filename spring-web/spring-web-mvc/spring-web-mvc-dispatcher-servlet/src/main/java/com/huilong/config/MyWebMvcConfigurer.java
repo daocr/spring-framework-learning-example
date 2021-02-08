@@ -12,6 +12,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.util.UrlPathHelper;
 
 import java.time.Duration;
@@ -31,7 +32,7 @@ import java.util.List;
  * @date 2021/1/10
  */
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @Slf4j
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
@@ -150,6 +151,14 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         log.info("添加拦截器 addInterceptors");
         registry.addInterceptor(new MyInterception()).addPathPatterns("/");
 
+
+        // i18n 国际化拦截器配置
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        // 拦截参数
+        localeChangeInterceptor.setParamName("lang");
+        registry.addInterceptor(localeChangeInterceptor).addPathPatterns("/**");
+
+
     }
 
     /**
@@ -206,7 +215,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-
 
 
 //        registry.addMapping("/**")
@@ -381,8 +389,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         log.info("getValidator");
         return null;
     }
-
-
 
 
 }
