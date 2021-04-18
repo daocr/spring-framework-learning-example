@@ -9,13 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -175,8 +173,8 @@ public class BeanConfig {
          * <p>
          * {@link org.springframework.web.servlet.i18n.CookieLocaleResolver} 基于 cookie
          * {@link org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver}  基于 header
-         *
-         *
+         * <p>
+         * <p>
          * {@link SessionLocaleResolver} 基于会话
          *
          * @return

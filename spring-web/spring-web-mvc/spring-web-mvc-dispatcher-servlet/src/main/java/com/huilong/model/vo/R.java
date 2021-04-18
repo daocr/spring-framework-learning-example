@@ -27,7 +27,6 @@ public class R<T> implements Serializable {
     //    @ApiModelProperty(value = "返回错误消息", example = SUCCESS_MSG)
     private final String msg;
 
-
     private static final int SUCCESS_CODE = 200;
 
     private static final int FAILURE_CODE = 500;
