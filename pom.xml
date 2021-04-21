@@ -23,7 +23,6 @@
         <module>spring-web</module>
         <module>spring-web-reactive</module>
         <module>spring-testing</module>
-        <module>spring-web/spring-web-mvc/spring-web-mvc-thymeleaf</module>
     </modules>
 
 
