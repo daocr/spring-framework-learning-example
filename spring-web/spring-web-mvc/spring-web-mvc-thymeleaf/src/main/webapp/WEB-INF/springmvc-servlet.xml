@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <context:component-scan base-package="com.huilong"/>
+
+    <!--        &lt;!&ndash;    配置模板信息&ndash;&gt;-->
+    <!--        <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">-->
+    <!--            <property name="prefix" value="/WEB-INF/templates/"/>-->
+    <!--            <property name="suffix" value=".html"/>-->
+    <!--            &lt;!&ndash; HTML is the default value, added here for the sake of clarity.          &ndash;&gt;-->
+    <!--            <property name="templateMode" value="HTML"/>-->
+    <!--            &lt;!&ndash; Template cache is true by default. Set to false if you want             &ndash;&gt;-->
+    <!--            &lt;!&ndash; templates to be automatically updated when modified.                    &ndash;&gt;-->
+    <!--            <property name="cacheable" value="true"/>-->
+    <!--        </bean>-->
+
+
+    <!--        &lt;!&ndash;  配置 thymeleaf 引擎&ndash;&gt;-->
+    <!--        <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">-->
+    <!--            <property name="templateResolver" ref="templateResolver"/>-->
+    <!--            <property name="enableSpringELCompiler" value="true"/>-->
+    <!--        </bean>-->
+
+
+    <!--        &lt;!&ndash;   配置thymeleaf 渲染页面&ndash;&gt;-->
+    <!--        <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">-->
+    <!--            <property name="templateEngine" ref="templateEngine"/>-->
+    <!--            &lt;!&ndash; NOTE 'order' and 'viewNames' are optional &ndash;&gt;-->
+    <!--            <property name="order" value="1"/>-->
+    <!--            <property name="viewNames" value="*.html,*.xhtml"/>-->
+    <!--        </bean>-->
+
+</beans>

@@ -15,6 +15,7 @@
 
     <modules>
         <module>spring-web-mvc-dispatcher-servlet</module>
+        <module>spring-web-mvc-thymeleaf</module>
     </modules>
 
 
