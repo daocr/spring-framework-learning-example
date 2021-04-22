@@ -24,10 +24,6 @@ public class ThymeleafSpringConfig
     private ApplicationContext applicationContext;
 
 
-    public ThymeleafSpringConfig() {
-        super();
-    }
-
     /**
      * 国际化配置
      *
