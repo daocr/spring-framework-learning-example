@@ -14,7 +14,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-web-mvc</module>
-        <module>spring-web-rest-clients</module>
         <module>spring-web-web-sockets</module>
     </modules>
 
