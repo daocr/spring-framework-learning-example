@@ -1,6 +1,6 @@
 package com.huilong.controller.annotated;
 
-import com.huilong.model.vo.Staff;
+import com.huilong.model.bo.Staff;
 import com.huilong.utils.MockUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.stereotype.Controller;

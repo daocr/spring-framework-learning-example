@@ -1,10 +1,9 @@
 package com.huilong.utils;
 
 import com.github.javafaker.Faker;
-import com.huilong.model.vo.Staff;
+import com.huilong.model.bo.Staff;
 
 import java.util.Locale;
-import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

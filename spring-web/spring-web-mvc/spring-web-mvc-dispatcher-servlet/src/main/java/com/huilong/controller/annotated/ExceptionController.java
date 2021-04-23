@@ -1,7 +1,7 @@
 package com.huilong.controller.annotated;
 
-import com.huilong.model.vo.Staff;
-import com.huilong.model.vo.R;
+import com.huilong.model.bo.Staff;
+import com.huilong.model.bo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

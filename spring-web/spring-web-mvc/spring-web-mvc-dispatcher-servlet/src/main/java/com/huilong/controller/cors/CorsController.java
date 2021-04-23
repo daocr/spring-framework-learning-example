@@ -1,7 +1,7 @@
 package com.huilong.controller.cors;
 
 import com.huilong.config.MyWebMvcConfigurer;
-import com.huilong.model.vo.Staff;
+import com.huilong.model.bo.Staff;
 import com.huilong.utils.MockUtils;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;

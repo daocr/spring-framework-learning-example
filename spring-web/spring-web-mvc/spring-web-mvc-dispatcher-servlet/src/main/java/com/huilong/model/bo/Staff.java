@@ -1,4 +1,4 @@
-package com.huilong.model.vo;
+package com.huilong.model.bo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
