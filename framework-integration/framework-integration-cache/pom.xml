@@ -12,7 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>framework-integration-cache-ehcache_2x</module>
+        <module>framework-integration-cache-ehcache-2x</module>
+        <module>framework-integration-cache-ehcache-3x</module>
     </modules>
 
     <artifactId>framework-integration-cache</artifactId>
