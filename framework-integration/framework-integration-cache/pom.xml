@@ -18,6 +18,7 @@
         <module>framework-integration-cache-caffeine</module>
         <module>framework-integration-cache-core-ext</module>
         <module>framework-integration-cache-redis-jedis</module>
+        <module>framework-integration-cache-redis-lettuce</module>
     </modules>
 
     <artifactId>framework-integration-cache</artifactId>
