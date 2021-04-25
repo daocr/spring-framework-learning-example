@@ -1,25 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
 
-    <!-- 磁盘缓存位置 -->
-    <diskStore path="./ehcache"/>
 
-    <!-- 默认缓存 -->
-    <defaultCache
-            maxEntriesLocalHeap="10000"
-            eternal="false"
-            timeToIdleSeconds="120"
-            timeToLiveSeconds="120"
-            maxEntriesLocalDisk="10000000"
-            diskExpiryThreadIntervalSeconds="120"
-            memoryStoreEvictionPolicy="LRU"/>
+    <cache alias="my-cache">
+        <expiry>
+            <!--            5 分钟-->
+            <ttl unit="minutes">5</ttl>
+        </expiry>
 
-    <!-- helloworld1缓存 -->
-    <cache name="hello-world1"
-           maxElementsInMemory="1000000"
-           timeToIdleSeconds="600"
-           timeToLiveSeconds="600"
-           overflowToDisk="false"
-           memoryStoreEvictionPolicy="LRU"/>
-</ehcache>
+        <resources>
+            <heap unit="entries">100000</heap>
+        </resources>
+
+    </cache>
+
+    <cache-template name="my-template">
+        <expiry>
+            <!--            500 秒-->
+            <ttl unit="seconds">500</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">100000</heap>
+        </resources>
+    </cache-template>
+
+</config>

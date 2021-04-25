@@ -15,19 +15,12 @@ public interface HelloService {
 
 
     /**
-     * 可能出现缓存击穿
+     * 查询员工
      *
      * @param staffParam
      * @return
      */
     List<Staff> findStaff(StaffParam staffParam);
 
-    /**
-     * 检测是否有其他线程，正对当前资源进行操作
-     *
-     * @param staffParam
-     * @return
-     */
-    List<Staff> findStaffLock(StaffParam staffParam);
 
 }

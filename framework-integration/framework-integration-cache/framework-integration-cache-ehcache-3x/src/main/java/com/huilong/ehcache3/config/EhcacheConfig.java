@@ -1,16 +1,17 @@
 package com.huilong.ehcache3.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
+import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+
+import javax.cache.CacheManager;
+import javax.cache.Caching;
+import javax.cache.spi.CachingProvider;
+import java.net.URISyntaxException;
 
 /**
- * 配置  ehcache 2.x 版本
+ * 配置  ehcache 3.x 版本
  *
  * @author daocr
  * @date 2021/4/23
@@ -21,25 +22,22 @@ public class EhcacheConfig {
 
 
     /**
-     * 配置  ehcache 2.x 版本
+     * 配置  ehcache 3.x 版本
      *
      * @return
      */
-    @Bean
-    public EhCacheManagerFactoryBean ehCacheManagerFactoryBean() {
-        EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
-        ClassPathResource classPathResource = new ClassPathResource("ehcache.xml");
-        ehCacheManagerFactoryBean.setConfigLocation(classPathResource);
-        return ehCacheManagerFactoryBean;
+    @Bean("myEhCacheCacheManager")
+    public JCacheCacheManager jCacheCacheManager() throws URISyntaxException {
+
+        JCacheCacheManager jCacheCacheManager = new JCacheCacheManager();
+        CachingProvider provider = Caching.getCachingProvider();
+
+        CacheManager eh107CacheManager = provider.getCacheManager(getClass().getResource("/ehcache.xml").toURI(),
+                getClass().getClassLoader());
+
+        jCacheCacheManager.setCacheManager(eh107CacheManager);
+        return jCacheCacheManager;
     }
 
-//    @Bean("myEhCacheCacheManager")
-//    public EhCacheCacheManager ehCacheCacheManager(@Autowired CacheManager cacheManager) {
-//
-//        EhCacheCacheManager ehCacheCacheManager = new EhCacheCacheManager();
-//        ehCacheCacheManager.setCacheManager(cacheManager);
-//
-//        return ehCacheCacheManager;
-//    }
 
 }

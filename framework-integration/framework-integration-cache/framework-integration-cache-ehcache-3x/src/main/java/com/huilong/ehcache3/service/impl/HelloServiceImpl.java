@@ -24,7 +24,7 @@ public class HelloServiceImpl implements HelloService {
     private ReentrantLock lock = new ReentrantLock();
 
     @Override
-    @Cacheable(value = "hello-world1", cacheManager = "myEhCacheCacheManager", unless = "#result == null")
+    @Cacheable(value = "my-cache", cacheManager = "myEhCacheCacheManager", unless = "#result == null")
     public List<Staff> findStaff(StaffParam staffParam) {
 
         log.info("线程：{} 查询数据库成功！{}", Thread.currentThread().getName(), staffParam);
@@ -33,26 +33,6 @@ public class HelloServiceImpl implements HelloService {
         return db;
 
     }
-
-    @Override
-    @Cacheable(value = "hello-world1", cacheManager = "myEhCacheCacheManager", unless = "#result == null")
-    public List<Staff> findStaffLock(StaffParam staffParam) {
-
-        if (lock.tryLock()) {
-            log.info("线程：{} 查询数据库成功！{}", Thread.currentThread().getName(), staffParam);
-
-            // 模拟查询数据库
-            List<Staff> db = findDb();
-            return db;
-        }
-
-        log.info("线程：{} 检测到其他线程正在操作！{}", Thread.currentThread().getName(), staffParam);
-
-        return null;
-
-
-    }
-
 
     /**
      * 模拟查询数据
