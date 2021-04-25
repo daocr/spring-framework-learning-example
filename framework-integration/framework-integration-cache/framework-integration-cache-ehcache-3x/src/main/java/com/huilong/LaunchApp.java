@@ -5,17 +5,11 @@ import com.huilong.ehcache3.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 /**
  *
  */
 @Slf4j
 public class LaunchApp {
-
-    // 线程池
-    private static ExecutorService executorService = Executors.newFixedThreadPool(20);
 
     public static void main(String[] args) {
 
