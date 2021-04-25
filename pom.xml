@@ -23,7 +23,6 @@
         <module>spring-web</module>
         <module>spring-web-reactive</module>
         <module>spring-testing</module>
-        <module>framework-integration/framework-integration-cache/framework-integration-cache-core-ext</module>
     </modules>
 
 
