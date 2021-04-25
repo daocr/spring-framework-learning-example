@@ -1,42 +1,52 @@
 package com.huilong.ehcache3.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.jcache.JCacheCacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.cache.CacheManager;
-import javax.cache.Caching;
-import javax.cache.spi.CachingProvider;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 /**
- * 配置  ehcache 3.x 版本
+ * 配置  ConcurrentMapConfig
  *
  * @author daocr
  * @date 2021/4/23
  */
 @Configuration
 @EnableCaching
-public class EhcacheConfig {
+public class ConcurrentMapConfig {
 
 
     /**
-     * 配置  ehcache 3.x 版本
+     * 配置 缓存管理器
      *
      * @return
      */
     @Bean("myEhCacheCacheManager")
-    public JCacheCacheManager jCacheCacheManager() throws URISyntaxException {
+    public SimpleCacheManager jCacheCacheManager(@Autowired @Qualifier("myConcurrentMap") ConcurrentMapCache cache) throws URISyntaxException {
+        SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
+        simpleCacheManager.setCaches(Arrays.asList(cache));
+        return simpleCacheManager;
 
-        JCacheCacheManager jCacheCacheManager = new JCacheCacheManager();
-        CachingProvider provider = Caching.getCachingProvider();
+    }
 
-        CacheManager eh107CacheManager = provider.getCacheManager(getClass().getResource("/ehcache.xml").toURI(),
-                getClass().getClassLoader());
+    /**
+     * 配置 配置具体缓存库
+     *
+     * @return
+     */
 
-        jCacheCacheManager.setCacheManager(eh107CacheManager);
-        return jCacheCacheManager;
+    @Bean("myConcurrentMap")
+    public ConcurrentMapCacheFactoryBean myConcurrentMap() {
+        ConcurrentMapCacheFactoryBean concurrentMapCacheFactoryBean = new ConcurrentMapCacheFactoryBean();
+        concurrentMapCacheFactoryBean.setName("my-cache");
+        return concurrentMapCacheFactoryBean;
     }
 
 

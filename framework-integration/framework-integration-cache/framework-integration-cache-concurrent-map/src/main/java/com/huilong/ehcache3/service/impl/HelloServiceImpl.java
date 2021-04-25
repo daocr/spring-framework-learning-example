@@ -1,9 +1,9 @@
 package com.huilong.ehcache3.service.impl;
 
 import com.github.javafaker.Faker;
-import com.huilong.ehcache3.model.bo.Staff;
-import com.huilong.ehcache3.model.param.StaffParam;
 import com.huilong.ehcache3.service.HelloService;
+import com.huilong.ext.model.bo.Staff;
+import com.huilong.ext.model.param.StaffParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
