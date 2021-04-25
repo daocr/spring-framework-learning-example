@@ -10,9 +10,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>framework-integration-cache-redis</artifactId>
+    <artifactId>framework-integration-cache-redis-jedis</artifactId>
 
-    <name>framework-integration-cache-redis</name>
+    <name>framework-integration-cache-redis-jedis</name>
 
     <url>http://www.example.com</url>
 
