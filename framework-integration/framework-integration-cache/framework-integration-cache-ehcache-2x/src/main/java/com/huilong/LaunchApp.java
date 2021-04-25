@@ -1,8 +1,8 @@
 package com.huilong;
 
 
-import com.huilong.ehcache2.model.param.StaffParam;
 import com.huilong.ehcache2.service.HelloService;
+import com.huilong.ext.model.param.StaffParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

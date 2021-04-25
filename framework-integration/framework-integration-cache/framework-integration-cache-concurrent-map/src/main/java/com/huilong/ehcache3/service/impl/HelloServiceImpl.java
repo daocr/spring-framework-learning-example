@@ -1,9 +1,9 @@
-package com.huilong.ehcache2.service.impl;
+package com.huilong.ehcache3.service.impl;
 
 import com.github.javafaker.Faker;
-import com.huilong.ehcache2.service.HelloService;
-import com.huilong.ext.model.bo.Staff;
-import com.huilong.ext.model.param.StaffParam;
+import com.huilong.ehcache3.model.bo.Staff;
+import com.huilong.ehcache3.model.param.StaffParam;
+import com.huilong.ehcache3.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class HelloServiceImpl implements HelloService {
     private ReentrantLock lock = new ReentrantLock();
 
     @Override
-    @Cacheable(value = "hello-world1", cacheManager = "myEhCacheCacheManager", unless = "#result == null")
+    @Cacheable(value = "my-cache", cacheManager = "myEhCacheCacheManager", unless = "#result == null")
     public List<Staff> findStaff(StaffParam staffParam) {
 
         log.info("线程：{} 查询数据库成功！{}", Thread.currentThread().getName(), staffParam);
@@ -33,7 +33,6 @@ public class HelloServiceImpl implements HelloService {
         return db;
 
     }
-
 
     /**
      * 模拟查询数据

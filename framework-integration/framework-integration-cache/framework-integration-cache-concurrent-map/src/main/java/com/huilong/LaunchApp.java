@@ -26,7 +26,6 @@ public class LaunchApp {
             helloService.findStaff(staffParam);
         }
 
-
         // 关闭容器
         applicationContext.close();
 

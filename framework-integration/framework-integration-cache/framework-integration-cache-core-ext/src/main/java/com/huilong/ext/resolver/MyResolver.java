@@ -1,4 +1,4 @@
-package com.huilong.ehcache2.ext.resolver;
+package com.huilong.ext.resolver;
 
 import org.springframework.cache.Cache;
 import org.springframework.cache.interceptor.CacheOperationInvocationContext;

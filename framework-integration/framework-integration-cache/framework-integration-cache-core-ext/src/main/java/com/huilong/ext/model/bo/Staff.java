@@ -1,4 +1,4 @@
-package com.huilong.ehcache2.model.bo;
+package com.huilong.ext.model.bo;
 
 import lombok.Data;
 

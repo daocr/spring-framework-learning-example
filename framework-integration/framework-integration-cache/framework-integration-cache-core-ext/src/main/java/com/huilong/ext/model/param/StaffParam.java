@@ -1,4 +1,4 @@
-package com.huilong.ehcache2.model.param;
+package com.huilong.ext.model.param;
 
 import lombok.Data;
 
@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Data
 
 public class StaffParam implements Serializable {
+
 
     /**
      * 员工名称

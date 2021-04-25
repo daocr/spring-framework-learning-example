@@ -1,8 +1,8 @@
 package com.huilong.ehcache3.service;
 
 
-import com.huilong.ehcache3.model.bo.Staff;
-import com.huilong.ehcache3.model.param.StaffParam;
+import com.huilong.ext.model.bo.Staff;
+import com.huilong.ext.model.param.StaffParam;
 
 import java.util.List;
 

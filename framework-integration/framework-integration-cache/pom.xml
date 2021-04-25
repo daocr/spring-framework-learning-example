@@ -14,6 +14,7 @@
     <modules>
         <module>framework-integration-cache-ehcache-2x</module>
         <module>framework-integration-cache-ehcache-3x</module>
+        <module>framework-integration-cache-concurrent-map</module>
     </modules>
 
     <artifactId>framework-integration-cache</artifactId>
