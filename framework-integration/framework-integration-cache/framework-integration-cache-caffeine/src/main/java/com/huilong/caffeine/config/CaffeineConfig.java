@@ -38,7 +38,7 @@ public class CaffeineConfig {
      *
      * @return
      */
-    @Bean("myCaffeineCacheManager")
+    @Bean("myCacheManager")
     public SimpleCacheManager jCacheCacheManager(@Autowired @Qualifier("myCache") CaffeineCache cache) throws URISyntaxException {
         SimpleCacheManager cacheManager = new SimpleCacheManager();
         cacheManager.setCaches(Arrays.asList(cache));
@@ -58,7 +58,8 @@ public class CaffeineConfig {
         Cache<Object, Object> build = Caffeine.newBuilder().recordStats().expireAfterAccess(30, TimeUnit.MINUTES)
                 .maximumSize(5).build();
 
-        return new CaffeineCache("default", build);
+        // 设置 cacheNames 名称
+        return new CaffeineCache("myCacheNames", build);
     }
 
 

@@ -27,7 +27,6 @@ import org.springframework.core.io.ClassPathResource;
 @EnableCaching
 public class EhcacheConfig {
 
-
     /**
      * 配置  ehcache 2.x 版本
      *
@@ -41,7 +40,7 @@ public class EhcacheConfig {
         return ehCacheManagerFactoryBean;
     }
 
-    @Bean("myEhCacheCacheManager")
+    @Bean("myCacheManager")
     public EhCacheCacheManager ehCacheCacheManager(@Autowired CacheManager cacheManager) {
 
         EhCacheCacheManager ehCacheCacheManager = new EhCacheCacheManager();

@@ -2,19 +2,19 @@
  * **********************************************************************
  * Copyright (c) 2021 .
  * All rights reserved.
- * 项目名称：framework-integration-cache-concurrent-map
+ * 项目名称：framework-integration-cache-redis-jedis
  * 版权说明：原创不易，传播请注明出处
  * ***********************************************************************
  */
-package com.huilong;
+package com.huilong.redis;
 
-import com.huilong.ehcache3.service.HelloService;
 import com.huilong.ext.model.param.StaffParam;
+import com.huilong.ext.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- *
+ * Hello world!
  */
 @Slf4j
 public class LaunchApp {
@@ -34,9 +34,8 @@ public class LaunchApp {
             helloService.findStaff(staffParam);
         }
 
+
         // 关闭容器
         applicationContext.close();
-
     }
-
 }

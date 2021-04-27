@@ -37,7 +37,7 @@ import java.time.Duration;
 public class RedisLettuceConfig {
 
 
-    @Bean("myCache")
+    @Bean("myCacheManager")
     public RedisCacheManager redisCache(@Autowired LettuceConnectionFactory lettuceConnectionFactory) {
 
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(lettuceConnectionFactory);

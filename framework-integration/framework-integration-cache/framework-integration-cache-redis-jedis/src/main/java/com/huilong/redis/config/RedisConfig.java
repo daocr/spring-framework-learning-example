@@ -36,7 +36,7 @@ import java.time.Duration;
 public class RedisConfig {
 
 
-    @Bean("myCache")
+    @Bean("myCacheManager")
     public RedisCacheManager redisCache(@Autowired JedisConnectionFactory jedisConnectionFactory) {
 
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(jedisConnectionFactory);

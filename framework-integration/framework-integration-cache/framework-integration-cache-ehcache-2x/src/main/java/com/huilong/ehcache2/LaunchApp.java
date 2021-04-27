@@ -2,22 +2,25 @@
  * **********************************************************************
  * Copyright (c) 2021 .
  * All rights reserved.
- * 项目名称：framework-integration-cache-redis-jedis
+ * 项目名称：framework-integration-cache-ehcache-2x
  * 版权说明：原创不易，传播请注明出处
  * ***********************************************************************
  */
-package com.huilong;
+package com.huilong.ehcache2;
+
 
 import com.huilong.ext.model.param.StaffParam;
-import com.huilong.redis.service.HelloService;
+import com.huilong.ext.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
 /**
- * Hello world!
+ *
  */
 @Slf4j
 public class LaunchApp {
+
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
@@ -33,8 +36,10 @@ public class LaunchApp {
             helloService.findStaff(staffParam);
         }
 
-
         // 关闭容器
         applicationContext.close();
+
     }
+
+
 }

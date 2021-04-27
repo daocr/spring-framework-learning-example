@@ -6,7 +6,7 @@
  * 版权说明：原创不易，传播请注明出处
  * ***********************************************************************
  */
-package com.huilong.ehcache3.config;
+package com.huilong.concurrentMap.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,7 +36,7 @@ public class ConcurrentMapConfig {
      *
      * @return
      */
-    @Bean("myEhCacheCacheManager")
+    @Bean("myCacheManager")
     public SimpleCacheManager jCacheCacheManager(@Autowired @Qualifier("myConcurrentMap") ConcurrentMapCache cache) throws URISyntaxException {
         SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
         simpleCacheManager.setCaches(Arrays.asList(cache));
@@ -53,7 +53,7 @@ public class ConcurrentMapConfig {
     @Bean("myConcurrentMap")
     public ConcurrentMapCacheFactoryBean myConcurrentMap() {
         ConcurrentMapCacheFactoryBean concurrentMapCacheFactoryBean = new ConcurrentMapCacheFactoryBean();
-        concurrentMapCacheFactoryBean.setName("my-cache");
+        concurrentMapCacheFactoryBean.setName("myCacheNames");
         return concurrentMapCacheFactoryBean;
     }
 

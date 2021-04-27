@@ -2,22 +2,23 @@
  * **********************************************************************
  * Copyright (c) 2021 .
  * All rights reserved.
- * 项目名称：framework-integration-cache-caffeine
+ * 项目名称：framework-integration-cache-concurrent-map
  * 版权说明：原创不易，传播请注明出处
  * ***********************************************************************
  */
-package com.huilong;
+package com.huilong.concurrentMap;
 
-import com.huilong.redis.config.service.HelloService;
 import com.huilong.ext.model.param.StaffParam;
+import com.huilong.ext.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * 参考：https://www.cnblogs.com/rickiyang/p/11074158.html
+ *
  */
 @Slf4j
 public class LaunchApp {
+
     public static void main(String[] args) {
 
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
@@ -35,5 +36,7 @@ public class LaunchApp {
 
         // 关闭容器
         applicationContext.close();
+
     }
+
 }

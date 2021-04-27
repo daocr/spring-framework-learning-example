@@ -26,7 +26,7 @@
             memoryStoreEvictionPolicy="LRU"/>
 
     <!-- helloworld1缓存 -->
-    <cache name="hello-world1"
+    <cache name="myCacheNames"
            maxElementsInMemory="1000000"
            timeToIdleSeconds="600"
            timeToLiveSeconds="600"

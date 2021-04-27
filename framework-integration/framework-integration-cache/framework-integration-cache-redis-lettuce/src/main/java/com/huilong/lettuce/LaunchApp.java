@@ -6,10 +6,10 @@
  * 版权说明：原创不易，传播请注明出处
  * ***********************************************************************
  */
-package com.huilong;
+package com.huilong.lettuce;
 
 import com.huilong.ext.model.param.StaffParam;
-import com.huilong.lettuce.service.HelloService;
+import com.huilong.ext.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

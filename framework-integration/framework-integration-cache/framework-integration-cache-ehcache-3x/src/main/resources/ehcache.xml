@@ -14,7 +14,7 @@
         xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
 
 
-    <cache alias="my-cache">
+    <cache alias="myCacheNames">
         <expiry>
             <!--            5 分钟-->
             <ttl unit="minutes">5</ttl>

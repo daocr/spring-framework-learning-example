@@ -34,7 +34,7 @@ public class EhcacheConfig {
      *
      * @return
      */
-    @Bean("myEhCacheCacheManager")
+    @Bean("myCacheManager")
     public JCacheCacheManager jCacheCacheManager() throws URISyntaxException {
 
         JCacheCacheManager jCacheCacheManager = new JCacheCacheManager();

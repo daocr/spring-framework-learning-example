@@ -2,16 +2,17 @@
  * **********************************************************************
  * Copyright (c) 2021 .
  * All rights reserved.
- * 项目名称：framework-integration-cache-redis-lettuce
+ * 项目名称：framework-integration-cache-ehcache-2x
  * 版权说明：原创不易，传播请注明出处
  * ***********************************************************************
  */
-package com.huilong.lettuce.service.impl;
+package com.huilong.ext.service.impl;
+
 
 import com.github.javafaker.Faker;
 import com.huilong.ext.model.bo.Staff;
 import com.huilong.ext.model.param.StaffParam;
-import com.huilong.lettuce.service.HelloService;
+import com.huilong.ext.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class HelloServiceImpl implements HelloService {
     private ReentrantLock lock = new ReentrantLock();
 
     @Override
-    @Cacheable(value = "default", cacheManager = "myCache", unless = "#result == null")
+    @Cacheable(cacheNames = "myCacheNames", cacheManager = "myCacheManager", unless = "#result == null")
     public List<Staff> findStaff(StaffParam staffParam) {
 
         log.info("线程：{} 查询数据库成功！{}", Thread.currentThread().getName(), staffParam);
@@ -41,6 +42,7 @@ public class HelloServiceImpl implements HelloService {
         return db;
 
     }
+
 
     /**
      * 模拟查询数据
