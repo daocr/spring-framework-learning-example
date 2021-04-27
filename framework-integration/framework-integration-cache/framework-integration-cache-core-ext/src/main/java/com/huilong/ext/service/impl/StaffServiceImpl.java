@@ -12,7 +12,7 @@ package com.huilong.ext.service.impl;
 import com.github.javafaker.Faker;
 import com.huilong.ext.model.bo.Staff;
 import com.huilong.ext.model.param.StaffParam;
-import com.huilong.ext.service.HelloService;
+import com.huilong.ext.service.StaffService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -30,7 +30,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 @Service
 @CacheConfig(cacheNames = "myCacheNames")
-public class HelloServiceImpl implements HelloService {
+public class StaffServiceImpl implements StaffService {
 
     private ReentrantLock lock = new ReentrantLock();
 
@@ -62,6 +62,7 @@ public class HelloServiceImpl implements HelloService {
             staff.setCountry(faker.country().name());
             db.add(staff);
         }
+
         return db;
     }
 }
