@@ -14,6 +14,7 @@ import com.huilong.ext.model.bo.Staff;
 import com.huilong.ext.model.param.StaffParam;
 import com.huilong.ext.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 @Slf4j
 @Service
+@CacheConfig(cacheNames = "myCacheNames")
 public class HelloServiceImpl implements HelloService {
 
     private ReentrantLock lock = new ReentrantLock();

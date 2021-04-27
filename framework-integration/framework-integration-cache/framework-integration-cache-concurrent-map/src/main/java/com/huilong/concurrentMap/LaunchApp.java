@@ -9,7 +9,7 @@
 package com.huilong.concurrentMap;
 
 import com.huilong.ext.model.param.StaffParam;
-import com.huilong.ext.service.HelloService;
+import com.huilong.ext.service.StaffService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -25,7 +25,7 @@ public class LaunchApp {
         applicationContext.scan("com.huilong");
         applicationContext.refresh();
 
-        HelloService helloService = applicationContext.getBean(HelloService.class);
+        StaffService helloService = applicationContext.getBean(StaffService.class);
         StaffParam staffParam = new StaffParam();
         staffParam.setName("张三");
 

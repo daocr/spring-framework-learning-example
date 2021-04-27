@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2020/12/14
  * @date 2020/12/14
  */
-public interface HelloService {
+public interface StaffService {
 
 
     /**
