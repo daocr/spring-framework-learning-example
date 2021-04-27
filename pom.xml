@@ -14,6 +14,7 @@
         <lombok.version>1.18.16</lombok.version>
         <logback-version>1.2.3</logback-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.user.dir>${user.dir}</main.user.dir>
     </properties>
 
     <modules>
@@ -52,6 +53,41 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>remove</goal>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <quiet>true</quiet>
+                    <!--HEADER文件-->
+                    <header>${main.user.dir}/HEADER</header>
+                    <!--排除文件-->
+                    <excludes>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>*.sh</exclude>
+                        <exclude>*.yml</exclude>
+                        <exclude>.editorconfig</exclude>
+                        <exclude>.gitignore</exclude>
+                        <exclude>**/*.md</exclude>
+                        <exclude>**/*.xml</exclude>
+                    </excludes>
+                    <!--严格检查-->
+                    <strictCheck>true</strictCheck>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
                 </configuration>
             </plugin>
         </plugins>

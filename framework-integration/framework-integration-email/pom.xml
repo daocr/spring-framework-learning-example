@@ -16,6 +16,7 @@
 
     <modules>
         <module>framework-integration-email-Jakarta-1.6.7-mail</module>
+        <module>framework-integration-email-Jakarta-2.x-mail</module>
     </modules>
 
 </project>
