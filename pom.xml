@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    **********************************************************************
+    Copyright (c) 2021 .
+    All rights reserved.
+    项目名称：spring-framework-study
+    版权说明：原创不易，传播请注明出处
+    ***********************************************************************
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -56,6 +66,7 @@
                 </configuration>
             </plugin>
 
+            <!--            http://code.mycila.com/license-maven-plugin/reports/3.0/plugin-info.html-->
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -75,18 +86,24 @@
                     <header>${main.user.dir}/HEADER</header>
                     <!--排除文件-->
                     <excludes>
-                        <exclude>**/*.properties</exclude>
+                        <!--                        <exclude>**/*.properties</exclude>-->
                         <exclude>*.sh</exclude>
-                        <exclude>*.yml</exclude>
+                        <!--                        <exclude>*.yml</exclude>-->
                         <exclude>.editorconfig</exclude>
                         <exclude>.gitignore</exclude>
                         <exclude>**/*.md</exclude>
-                        <exclude>**/*.xml</exclude>
+                        <!--                        <exclude>**/*.xml</exclude>-->
                     </excludes>
                     <!--严格检查-->
                     <strictCheck>true</strictCheck>
                     <mapping>
                         <java>SLASHSTAR_STYLE</java>
+                        <js>SLASHSTAR_STYLE</js>
+                        <xml>XML_STYLE</xml>
+                        <yaml>SCRIPT_STYLE</yaml>
+                        <properties>SCRIPT_STYLE</properties>
+                        <sql>DOUBLEDASHES_STYLE</sql>
+                        <ftl>FTL</ftl>
                     </mapping>
                 </configuration>
             </plugin>

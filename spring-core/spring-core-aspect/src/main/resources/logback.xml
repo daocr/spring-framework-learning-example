@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    **********************************************************************
+    Copyright (c) 2021 .
+    All rights reserved.
+    项目名称：spring-core-aspect
+    版权说明：原创不易，传播请注明出处
+    ***********************************************************************
+
+-->
 <configuration debug="false" xmlns="http://ch.qos.logback/xml/ns/logback"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback

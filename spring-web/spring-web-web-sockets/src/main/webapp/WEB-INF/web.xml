@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    **********************************************************************
+    Copyright (c) 2021 .
+    All rights reserved.
+    项目名称：spring-web-web-sockets
+    版权说明：原创不易，传播请注明出处
+    ***********************************************************************
+
+-->
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"

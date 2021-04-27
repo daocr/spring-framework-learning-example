@@ -1,3 +1,13 @@
+<!--
+
+    **********************************************************************
+    Copyright (c) 2021 .
+    All rights reserved.
+    项目名称：framework-integration-cache-ehcache-3x
+    版权说明：原创不易，传播请注明出处
+    ***********************************************************************
+
+-->
 <config
         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
         xmlns='http://www.ehcache.org/v3'

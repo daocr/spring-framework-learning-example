@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    **********************************************************************
+    Copyright (c) 2021 .
+    All rights reserved.
+    项目名称：spring-core-logging-logback
+    版权说明：原创不易，传播请注明出处
+    ***********************************************************************
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
