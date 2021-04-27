@@ -28,8 +28,8 @@ public class JakartaConfig {
         mailSender.setJavaMailProperties(new Properties());
         mailSender.setProtocol("smtp");
         mailSender.setHost("smtp.163.com");
-        mailSender.setUsername("**@163.com");
-        mailSender.setPassword("**");
+        mailSender.setUsername("q873104692@163.com");
+        mailSender.setPassword("VCZONHMJRVHQKNCL");
         mailSender.setDefaultEncoding("UTF-8");
         return mailSender;
     }

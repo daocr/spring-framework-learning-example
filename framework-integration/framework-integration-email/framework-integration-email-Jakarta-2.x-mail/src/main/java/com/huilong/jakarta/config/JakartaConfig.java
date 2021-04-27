@@ -22,15 +22,15 @@ import java.util.Properties;
 @Configuration
 public class JakartaConfig {
 
-    @Bean
-    public JavaMailSender simpleMailMessage() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setJavaMailProperties(new Properties());
-        mailSender.setProtocol("smtp");
-        mailSender.setHost("smtp.163.com");
-        mailSender.setUsername("**@163.com");
-        mailSender.setPassword("**");
-        mailSender.setDefaultEncoding("UTF-8");
-        return mailSender;
-    }
+//    @Bean
+//    public JavaMailSender simpleMailMessage() {
+//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+//        mailSender.setJavaMailProperties(new Properties());
+//        mailSender.setProtocol("smtp");
+//        mailSender.setHost("smtp.163.com");
+//        mailSender.setUsername("q873104692@163.com");
+//        mailSender.setPassword("VCZONHMJRVHQKNCL");
+//        mailSender.setDefaultEncoding("UTF-8");
+//        return mailSender;
+//    }
 }

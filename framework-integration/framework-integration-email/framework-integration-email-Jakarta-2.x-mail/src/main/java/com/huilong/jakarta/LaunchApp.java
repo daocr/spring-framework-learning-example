@@ -8,60 +8,37 @@
  */
 package com.huilong.jakarta;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessagePreparator;
+import jakarta.mail.*;
+import jakarta.mail.internet.MimeMessage;
 
-import javax.mail.internet.MimeMessage;
+import java.util.Date;
+import java.util.Properties;
+
 
 /**
  * Hello world!
  */
 public class LaunchApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MessagingException {
 
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-        applicationContext.scan("com.huilong");
-        applicationContext.refresh();
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.163.com");
+        props.put("mail.debug", "true");
+        Session session = Session.getInstance(props, null);
 
-        JavaMailSender javaMailSender = applicationContext.getBean(JavaMailSender.class);
-
-        sendMsg(javaMailSender);
-
-
-        MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator() {
-            @Override
-            public void prepare(MimeMessage mimeMessage) throws Exception {
-
-                mimeMessage.setSender("**@qq.com");
-                mimeMessage.setFrom("**@163.com");
-
-            }
-        };
-
-
-
-        // 关闭容器
-        applicationContext.close();
+        try {
+            MimeMessage msg = new MimeMessage(session);
+            msg.setFrom("q873104692@163.com");
+            msg.setRecipients(Message.RecipientType.TO,
+                    "873104692@qq.com");
+            msg.setSubject("Jakarta Mail hello world example");
+            msg.setSentDate(new Date());
+            msg.setText("Hello, world 0001!\n");
+            Transport.send(msg, "q873104692", "VCZONHMJRVHQKNCL");
+        } catch (MessagingException mex) {
+            System.out.println("send failed, exception: " + mex);
+        }
     }
-
-    /**
-     * 发送普通 email
-     *
-     * @param javaMailSender
-     */
-    private static void sendMsg(JavaMailSender javaMailSender) {
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setSubject("我是标题");
-        simpleMailMessage.setText("我是测试内容");
-        simpleMailMessage.setTo("**@qq.com");
-        simpleMailMessage.setFrom("**@163.com");
-        javaMailSender.send(simpleMailMessage);
-    }
-
-
-
 
 
 }
