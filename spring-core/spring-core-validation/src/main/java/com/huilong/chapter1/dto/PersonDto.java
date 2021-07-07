@@ -8,6 +8,8 @@
  */
 package com.huilong.chapter1.dto;
 
+import com.huilong.chapter1.group.Insert;
+import com.huilong.chapter1.group.Update;
 import lombok.Data;
 
 import javax.validation.constraints.Max;
@@ -20,7 +22,10 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PersonDto {
 
-    @NotNull
+    @NotNull(groups = Insert.class)
     @Max(value = 3)
     private Integer age;
+
+    @NotNull(groups = Update.class)
+    private String name;
 }

@@ -9,6 +9,8 @@
 package com.huilong.chapter1;
 
 import com.huilong.chapter1.dto.PersonDto;
+import com.huilong.chapter1.group.Insert;
+import com.huilong.chapter1.group.Update;
 import com.huilong.chapter1.service.HelloService1;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -31,16 +33,15 @@ public class ValidatorAppChapter1 {
 
         PersonDto personDto = new PersonDto();
 
-
         // 1、  手动 调用 验证
         manualVerification(personDto);
 
-        // 3、使用 spring LocalValidatorFactoryBean
-        springValidator(context, personDto);
-
-        // 2、 aop 切面拦截
-        HelloService1 bean = context.getBean(HelloService1.class);
-        bean.SayHello(null);
+//        // 3、使用 spring LocalValidatorFactoryBean
+//        springValidator(context, personDto);
+//
+//        // 2、 aop 切面拦截
+//        HelloService1 bean = context.getBean(HelloService1.class);
+//        bean.SayHello(null);
 
 
         // 关闭容器
@@ -64,11 +65,9 @@ public class ValidatorAppChapter1 {
 
     // 手动 调用 验证
     private static void manualVerification(PersonDto personDto) {
-
-
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
         Validator validator = vf.getValidator();
-        Set<ConstraintViolation<PersonDto>> set = validator.validate(personDto);
+        Set<ConstraintViolation<PersonDto>> set = validator.validate(personDto, Update.class);
         for (ConstraintViolation<PersonDto> constraintViolation : set) {
             log.info("手动验证：{} {}", constraintViolation.getPropertyPath(), constraintViolation.getMessage());
         }
