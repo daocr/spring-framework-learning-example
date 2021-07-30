@@ -10,7 +10,9 @@ package com.huilong.chapter1.dto;
 
 import com.huilong.chapter1.group.Insert;
 import com.huilong.chapter1.group.Update;
+import com.huilong.chapter1.group.provider.MyDefaultGroupSequenceProvider;
 import lombok.Data;
+import org.hibernate.validator.group.GroupSequenceProvider;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -20,7 +22,10 @@ import javax.validation.constraints.NotNull;
  * @date 2020/12/19
  */
 @Data
+@GroupSequenceProvider(value = MyDefaultGroupSequenceProvider.class)
 public class PersonDto {
+
+    private Integer id;
 
     @NotNull(groups = Insert.class)
     @Max(value = 3)
